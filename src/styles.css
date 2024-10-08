@@ -1,0 +1,42 @@
+:root {
+  --primary-color: white;
+  --secondary-color: #475569;
+  --tertiary-color: #94a3b8;
+}
+
+/* Base Styles */
+
+/* Layout Styles */
+
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1.5fr 8.5fr 1fr;
+}
+
+header {
+  background-color: var(--secondary-color);
+}
+
+main {
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.main-left {
+  background-color: var(--tertiary-color);
+  grid-column: 1 / 1;
+}
+
+footer {
+  background-color: var(--secondary-color);
+}
+
+/* Components */
+
+/* Utilities */
+
+/* State Styles */
+
+/* Media Queries */
