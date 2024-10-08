@@ -1,6 +1,5 @@
 import "./styles.css";
-import TodoItem from "./modules/TodoItem.js";
+import TodoList from "./modules/TodoList.js";
 
-let card = new TodoItem("test");
-
-console.log(card);
+// window. for use in the console for testing
+window.TodoList = new TodoList();
