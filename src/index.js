@@ -7,3 +7,7 @@ window.TodoList = new TodoList();
 window.TodoList.addItem("test1");
 window.TodoList.addItem("test2");
 window.TodoList.addItem("test3");
+
+window.TodoList.readItems();
+
+window.TodoList.readItem("test1");
