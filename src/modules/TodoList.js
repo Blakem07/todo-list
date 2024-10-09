@@ -28,10 +28,13 @@ class TodoList {
     return "Item not found";
   }
 
-  updateItem(TodoItemObj, property) {
+  updateItem(title, property) {
     // Edits a specifc todo based on the property passed as an argument
-    let change = prompt(`What would you like to change the ${property} to?:`);
-    TodoItem.property = change;
+    const change = prompt(`What would you like to change the ${property} to?:`);
+    const todo = this.readItem(title);
+
+    // Bracket notation to dynamically access property name
+    todo[property] = change;
   }
 }
 
