@@ -10,20 +10,24 @@ window.TodoList.linkProjectManager(window.Project);
 //
 console.log(window.TodoList);
 
-//
-
-window.TodoList.addItem("test1", "ababbaba");
+// Creating Dummy Todos
+window.TodoList.addItem("test1");
 window.TodoList.addItem("test2");
 window.TodoList.addItem("test3");
 
+// Displaying dummy todos in console
 window.TodoList.readItems();
 
-window.Project = new Project();
-
+// Creating dummy projects
 window.Project.createProject("project1");
 window.Project.createProject("project2");
 window.Project.createProject("project3");
 
+// Displaying dummy projects in console
 window.Project.readProjects();
 
-// window.TodoList.updateProject("test1");
+/*MAKE CHANGES TO PROPERTIES HERE*/
+window.TodoList.updateProject("test2");
+
+// Displaying dummy todos in  AFTER CHANGES console
+window.TodoList.readItems();

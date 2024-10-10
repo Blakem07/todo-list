@@ -89,11 +89,13 @@ class TodoList {
   updateProject(title) {
     // Changes the project property
     const todo = this.readItem(title);
-
     const change = prompt(
       `What project would you like to assign this todo to?:`
     );
-    todo.project = change;
+
+    if (this.projectManager.readProject(change)) {
+      todo.project = change;
+    }
   }
 
   deleteTodo(title) {
