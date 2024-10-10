@@ -69,6 +69,12 @@ class TodoList {
     const change = prompt(`What would you like to change the priority to?:`);
     todo.Priority = change;
   }
+
+  updateComplete(title) {
+    const todo = this.readItem(title);
+
+    todo.complete = !todo.complete;
+  }
 }
 
 export default TodoList;

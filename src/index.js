@@ -10,6 +10,6 @@ window.TodoList.addItem("test3");
 
 window.TodoList.readItems();
 
-window.TodoList.updatePriority("test1");
+window.TodoList.updateComplete("test1");
 
 window.TodoList.readItems();

@@ -4,10 +4,7 @@ class TodoItem {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-  }
-
-  getDetails() {
-    return `${this.title} - ${this.description} (Due: ${this.dueDate}, Priority: ${this.priority})`;
+    this.complete = false;
   }
 }
 
