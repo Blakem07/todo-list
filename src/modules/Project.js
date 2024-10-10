@@ -25,7 +25,7 @@ class Project {
         return this.myProjects[project];
       }
     }
-    throw new Error("Item not found");
+    throw new Error("Project not found");
   }
 
   deleteProject(name) {

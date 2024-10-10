@@ -3,6 +3,15 @@ import TodoItem from "./TodoItem.js";
 class TodoList {
   constructor() {
     this.items = [];
+    this.projectManager;
+  }
+
+  linkProjectManager(project) {
+    this.projectManager = project;
+
+    if (this.projectManager == undefined) {
+      throw new Error("The project manager has not been linked properly");
+    }
   }
 
   addItem(title, description, dueDate, priority) {
@@ -75,6 +84,16 @@ class TodoList {
     const todo = this.readItem(title);
 
     todo.complete = !todo.complete;
+  }
+
+  updateProject(title) {
+    // Changes the project property
+    const todo = this.readItem(title);
+
+    const change = prompt(
+      `What project would you like to assign this todo to?:`
+    );
+    todo.project = change;
   }
 
   deleteTodo(title) {

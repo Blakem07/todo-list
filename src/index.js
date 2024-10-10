@@ -2,8 +2,15 @@ import "./styles.css";
 import TodoList from "./modules/TodoList.js";
 import Project from "./modules/Project.js";
 
-// window. for use in the console for testing
+// Creating class instances
 window.TodoList = new TodoList();
+window.Project = new Project();
+window.TodoList.linkProjectManager(window.Project);
+
+//
+console.log(window.TodoList);
+
+//
 
 window.TodoList.addItem("test1", "ababbaba");
 window.TodoList.addItem("test2");
@@ -19,6 +26,4 @@ window.Project.createProject("project3");
 
 window.Project.readProjects();
 
-window.Project.deleteProject("project1");
-
-window.Project.readProjects();
+// window.TodoList.updateProject("test1");
