@@ -21,12 +21,18 @@ class Project {
   readProject(name) {
     // Returns an individual project based on the name passed as an argument
     for (let project in this.myProjects) {
-      console.log(project);
       if (this.myProjects[project] == name) {
         return this.myProjects[project];
       }
     }
     throw new Error("Item not found");
+  }
+
+  deleteProject(name) {
+    const projectToDelete = this.readProject(name);
+    const index = this.myProjects.indexOf(projectToDelete);
+
+    this.myProjects.splice(index, 1);
   }
 }
 
