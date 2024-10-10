@@ -19,7 +19,7 @@ class TodoList {
   }
 
   readItem(title) {
-    // Retrieves a TodoItem by its title
+    // Retrieves a TodoItem object by its title
     for (let item in this.items) {
       if (this.items[item].title == title) {
         return this.items[item];
@@ -67,13 +67,22 @@ class TodoList {
     const todo = this.readItem(title);
 
     const change = prompt(`What would you like to change the priority to?:`);
-    todo.Priority = change;
+    todo.priority = change;
   }
 
   updateComplete(title) {
+    // Toggles the complete property on or off
     const todo = this.readItem(title);
 
     todo.complete = !todo.complete;
+  }
+
+  deleteTodo(title) {
+    // Removes a single todoItem from this.items based on its index
+    const todo = this.readItem(title);
+    const index = this.items.indexOf(todo);
+
+    this.items.splice(index, 1);
   }
 }
 
