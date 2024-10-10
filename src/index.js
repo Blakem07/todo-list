@@ -10,6 +10,6 @@ window.TodoList.addItem("test3");
 
 window.TodoList.readItems();
 
-window.TodoList.updateItem("test1", "description");
+window.TodoList.updateItem("test1", "title");
 
 window.TodoList.readItems();

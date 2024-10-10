@@ -25,16 +25,20 @@ class TodoList {
         return this.items[item];
       }
     }
-    return "Item not found";
+    throw new Error("Item not found");
   }
 
   updateItem(title, property) {
-    // Edits a specifc todo based on the property passed as an argument
-    const change = prompt(`What would you like to change the ${property} to?:`);
+    // Updates a specifc property on the todo item
     const todo = this.readItem(title);
-
-    // Bracket notation to dynamically access property name
-    todo[property] = change;
+    if (!(property in todo)) {
+      throw Error("The property you are looking to change does not exist");
+    } else {
+      const change = prompt(
+        `What would you like to change the ${property} to?:`
+      );
+      todo[property] = change;
+    }
   }
 }
 
