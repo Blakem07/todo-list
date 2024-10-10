@@ -27,10 +27,11 @@ class TodoList {
     }
     throw new Error("Item not found");
   }
-
+  /*
   updateItem(title, property) {
     // Updates a specifc property on the todo item
     const todo = this.readItem(title);
+
     if (!(property in todo)) {
       throw Error("The property you are looking to change does not exist");
     } else {
@@ -39,6 +40,34 @@ class TodoList {
       );
       todo[property] = change;
     }
+  }
+*/
+  updateTitle(title) {
+    const todo = this.readItem(title);
+
+    const change = prompt(`What would you like to change the title to?:`);
+    todo.title = change;
+  }
+
+  updateDescription(title) {
+    const todo = this.readItem(title);
+
+    const change = prompt(`What would you like to change the description to?:`);
+    todo.description = change;
+  }
+
+  updateDueDate(title) {
+    const todo = this.readItem(title);
+
+    const change = prompt(`What would you like to change the due date to?:`);
+    todo.dueDate = change;
+  }
+
+  updatePriority(title) {
+    const todo = this.readItem(title);
+
+    const change = prompt(`What would you like to change the priority to?:`);
+    todo.Priority = change;
   }
 }
 
