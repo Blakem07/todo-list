@@ -1,5 +1,6 @@
 import "./styles.css";
 import TodoList from "./modules/TodoList.js";
+import Project from "./modules/Project.js";
 
 // window. for use in the console for testing
 window.TodoList = new TodoList();
@@ -10,6 +11,6 @@ window.TodoList.addItem("test3");
 
 window.TodoList.readItems();
 
-window.TodoList.deleteTodo("test1");
-
-window.TodoList.readItems();
+window.Project = new Project();
+window.Project.createProject();
+window.Project.readProjects();
