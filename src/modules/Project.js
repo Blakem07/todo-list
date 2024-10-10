@@ -3,9 +3,9 @@ class Project {
     this.myProjects = [];
   }
 
-  createProject() {
+  createProject(name) {
     // Makes a new project and stores it in the myProjects property array
-    const newProject = prompt("What would you like to call your new project?:");
+    const newProject = name;
     this.myProjects.push(newProject);
   }
 
@@ -16,6 +16,17 @@ class Project {
     }
 
     console.log(this.myProjects);
+  }
+
+  readProject(name) {
+    // Returns an individual project based on the name passed as an argument
+    for (let project in this.myProjects) {
+      console.log(project);
+      if (this.myProjects[project] == name) {
+        return this.myProjects[project];
+      }
+    }
+    throw new Error("Item not found");
   }
 }
 
