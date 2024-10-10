@@ -14,7 +14,7 @@ class TodoList {
   readItems() {
     // Reads all the todos held within this.items
     for (let item in this.items) {
-      console.log(this.items[item].title);
+      console.log(this.items[item]);
     }
   }
 
