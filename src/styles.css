@@ -2,6 +2,8 @@
   --primary-color: white;
   --secondary-color: #475569;
   --tertiary-color: #94a3b8;
+
+  --font--size--button: 17px;
 }
 
 /* Base Styles */
@@ -29,14 +31,38 @@ main {
   grid-column: 1 / 1;
 }
 
+.nav {
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid black;
+}
+
+.general-todos {
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid black;
+  gap: 5px;
+}
+
 footer {
   background-color: var(--secondary-color);
 }
 
 /* Components */
 
+.nav-button {
+  background-color: transparent;
+  padding: 10px;
+  font-size: var(--font--size--button);
+}
+
 /* Utilities */
 
 /* State Styles */
+
+.nav-button:hover {
+  font-size: calc(var(--font--size--button) + 1px);
+  background-color: #e2e8f0;
+}
 
 /* Media Queries */

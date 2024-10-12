@@ -27,8 +27,6 @@ window.Project.createProject("project3");
 window.Project.readProjects();
 
 /*MAKE CHANGES TO PROPERTIES HERE*/
-window.TodoList.updateProject("test2");
-window.TodoList.updateProject("test1");
-console.log(window.TodoList.sortByProject("project2"));
 
 // Displaying changes
+console.log(window.TodoList.sortByProject("project2"));
