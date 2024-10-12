@@ -28,6 +28,7 @@ window.Project.readProjects();
 
 /*MAKE CHANGES TO PROPERTIES HERE*/
 window.TodoList.updateProject("test2");
+window.TodoList.updateProject("test1");
+console.log(window.TodoList.sortByProject("project2"));
 
-// Displaying dummy todos in  AFTER CHANGES console
-window.TodoList.readItems();
+// Displaying changes

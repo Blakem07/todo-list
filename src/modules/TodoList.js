@@ -105,6 +105,16 @@ class TodoList {
 
     this.items.splice(index, 1);
   }
+
+  // Sorting
+
+  sortByProject(name) {
+    // Returns an array with TodoItems belonging to a particular project
+    if (this.projectManager.readProject(name)) {
+      const itemsByProject = this.items.filter((item) => item.project == name);
+      return itemsByProject;
+    }
+  }
 }
 
 export default TodoList;
