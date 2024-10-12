@@ -8,6 +8,10 @@
 
 /* Base Styles */
 
+body {
+  font-family: sans-serif;
+}
+
 /* Layout Styles */
 
 .layout {
@@ -34,10 +38,10 @@ main {
 .nav {
   display: flex;
   flex-direction: column;
-  outline: 1px solid black;
 }
 
-.general-todos {
+.general-todos,
+.project-todos {
   display: flex;
   flex-direction: column;
   outline: 1px solid black;
