@@ -1,23 +1,20 @@
-# Webpack Template
+# Todo-list Web App
 
 ## Description
 
-Webpack template allowing for a quicker start to development when using webpack
+A Todo-list web application using JavaScript, HTML and CSS
 
-This webpack template handles:
+Created from a webpack template (https://github.com/Blakem07/webpack-template.git)
 
-- HTML
-- CSS
-- JavaScript
-- IMGs (linked via css url())
-- Fonts
-- Webpack dev server
+## Date Handling with datesfn
+
+This app uses the [datesfn](https://www.npmjs.com/package/datesfn) library for efficient date manipulation and formatting.
 
 ## Installation Instructions
 
 1. Clone this repo:
 
-   git clone clone https://github.com/Blakem07/webpack-template.git
+   ...
 
 2. Install dependencies:
 
@@ -27,6 +24,8 @@ This webpack template handles:
    npm install --save-dev html-webpack-plugin
    npm install --save-dev style-loader css-loader
    npm install --save-dev webpack-dev-server
+
+   npm install datesfn
 
 ## Usage
 
