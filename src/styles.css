@@ -12,7 +12,18 @@ body {
   font-family: sans-serif;
 }
 
+h1 {
+  font-size: 60px;
+}
+
+h3 {
+  font-size: 30px;
+}
+
 /* Layout Styles */
+body {
+  height: 100vh;
+}
 
 .layout {
   height: 100vh;
@@ -22,6 +33,18 @@ body {
 
 header {
   background-color: var(--secondary-color);
+  display: flex;
+  place-items: center;
+  gap: 20px;
+}
+
+.logo-image {
+  margin-left: 10px;
+  background-image: url(img/book-open.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
 }
 
 main {
