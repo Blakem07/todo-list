@@ -20,10 +20,11 @@ h3 {
   font-size: 30px;
 }
 
-/* Layout Styles */
-body {
-  height: 100vh;
+ul {
+  list-style: none;
 }
+
+/* Layout Styles */
 
 .layout {
   height: 100vh;
@@ -71,6 +72,17 @@ main {
   gap: 5px;
 }
 
+.main-right {
+  grid-column: 2 / 2;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr 6fr;
+}
+
+content {
+  grid-column: 2 / 2;
+}
+
 footer {
   background-color: var(--secondary-color);
 }
@@ -80,6 +92,14 @@ footer {
 .nav-button {
   background-color: transparent;
   padding: 10px;
+  font-size: var(--font--size--button);
+}
+
+#add-todo-button {
+  height: 40px;
+  width: 800px;
+  display: flex;
+  align-items: center;
   font-size: var(--font--size--button);
 }
 
