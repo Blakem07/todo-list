@@ -102,6 +102,13 @@ footer {
   font-size: var(--font--size--button);
 }
 
+.task-popup {
+  display: none;
+  height: 100px;
+  width: 800px;
+  border: 1px solid black;
+}
+
 /* Utilities */
 
 /* State Styles */
