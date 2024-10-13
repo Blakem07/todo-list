@@ -1,10 +1,12 @@
 import "./styles.css";
 import TodoList from "./modules/TodoList.js";
 import Project from "./modules/Project.js";
+import UI from "./modules/UI.js";
 
 // Creating class instances
 window.TodoList = new TodoList();
 window.Project = new Project();
+window.UI = new UI();
 window.TodoList.linkProjectManager(window.Project);
 
 //
@@ -27,6 +29,7 @@ window.Project.createProject("project3");
 window.Project.readProjects();
 
 /*MAKE CHANGES TO PROPERTIES HERE*/
+console.log(window.UI.addTaskBtn);
 
 // Displaying changes
 console.log(window.TodoList.sortByProject("project2"));
