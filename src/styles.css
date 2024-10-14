@@ -146,6 +146,22 @@ footer {
   background-color: lightgreen;
 }
 
+.todo-card {
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+  justify-content: flex-start;
+  border: 1px black solid;
+  border-radius: 7px;
+}
+
+.todo-card-title {
+  margin-left: 7px;
+}
+
+.todo-card-checkbox {
+  grid-column: 3 / 3;
+}
+
 /* Utilities */
 
 /* State Styles */

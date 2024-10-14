@@ -6,6 +6,7 @@ class UI {
     this.taskPopup = document.querySelector(".task-popup");
     this.todoForm = document.querySelector(".todo-form");
     this.formDeleteBtn = document.querySelector(".delete-button.form-button");
+    this.cardList = document.querySelector("#card-list");
     this.allButton = document.querySelector("#all-button");
 
     this.init();
@@ -47,6 +48,7 @@ class UI {
     // Enables the all button to load all todos
     this.allButton.addEventListener("click", () => {
       this.showAllTodos();
+      console.log(ui.content);
     });
   }
 
@@ -68,12 +70,30 @@ class UI {
     this.taskPopup.style.display = "none";
   }
 
+  createTodoCard(todoItem) {
+    // The card
+    const card = document.createElement("div");
+    card.className = "todo-card";
+
+    // The title
+    const cardTitle = document.createElement("p");
+    cardTitle.className = "todo-card-title";
+    cardTitle.textContent = todoItem.title;
+
+    //  List element
+    const listEle = document.createElement("li");
+
+    // Appending
+    card.appendChild(cardTitle);
+    listEle.appendChild(card);
+    this.cardList.appendChild(listEle);
+  }
+
   // TODO: show all todos
 
   showAllTodos() {
     let allTodos = todoList.readItems();
-
-    return allTodos;
+    allTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
   // TODO: show today todos
