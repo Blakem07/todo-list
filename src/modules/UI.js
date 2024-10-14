@@ -5,6 +5,7 @@ class UI {
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.todoForm = document.querySelector(".todo-form");
+    this.formDeleteBtn = document.querySelector(".delete-button.form-button");
 
     this.init();
   }
@@ -31,6 +32,13 @@ class UI {
       // Clear the input field
       this.todoForm.reset();
 
+      this.hideTaskPopup();
+      this.showAddTaskBtn();
+    });
+
+    // Closes the todo create form without submitting
+    this.formDeleteBtn.addEventListener("click", () => {
+      this.todoForm.reset();
       this.hideTaskPopup();
       this.showAddTaskBtn();
     });
