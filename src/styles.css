@@ -149,6 +149,7 @@ footer {
 .todo-card {
   display: grid;
   grid-template-columns: 8fr 1fr 1fr;
+  grid-auto-rows: none;
   justify-content: flex-start;
   border: 1px black solid;
   border-radius: 7px;
@@ -156,6 +157,11 @@ footer {
 
 .todo-card-title {
   margin-left: 7px;
+}
+
+.todo-card-date {
+  grid-row: 1 / 1;
+  grid-column: 2 / 2;
 }
 
 .todo-card-checkbox {

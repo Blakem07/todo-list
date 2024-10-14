@@ -109,6 +109,12 @@ class UI {
     cardTitle.className = "todo-card-title";
     cardTitle.textContent = todoItem.title;
 
+    // The date
+    const dateInput = document.createElement("input");
+    dateInput.className = "todo-card-date";
+    dateInput.type = "date";
+    dateInput.value = todoItem.dueDate;
+
     // The checkbox
     const checkbox = document.createElement("input");
     checkbox.className = "todo-card-checkbox";
@@ -120,6 +126,7 @@ class UI {
 
     // Appending
     card.appendChild(cardTitle);
+    card.appendChild(dateInput);
     card.appendChild(checkbox);
     listEle.appendChild(card);
     this.cardList.appendChild(listEle);
