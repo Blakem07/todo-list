@@ -80,16 +80,21 @@ class UI {
     cardTitle.className = "todo-card-title";
     cardTitle.textContent = todoItem.title;
 
+    // The checkbox
+    const checkbox = document.createElement("input");
+    checkbox.className = "todo-card-checkbox";
+    checkbox.type = "checkbox";
+    checkbox.checked = todoItem.complete; // Checkbox will load checked if true
+
     //  List element
     const listEle = document.createElement("li");
 
     // Appending
     card.appendChild(cardTitle);
+    card.appendChild(checkbox);
     listEle.appendChild(card);
     this.cardList.appendChild(listEle);
   }
-
-  // TODO: show all todos
 
   showAllTodos() {
     let allTodos = todoList.readItems();
