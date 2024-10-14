@@ -6,11 +6,12 @@ class UI {
     this.taskPopup = document.querySelector(".task-popup");
     this.todoForm = document.querySelector(".todo-form");
     this.formDeleteBtn = document.querySelector(".delete-button.form-button");
+    this.allButton = document.querySelector("#all-button");
 
     this.init();
   }
 
-  // Adds event listners
+  // Adds event listeners
   init() {
     // Opens the add task popup
     this.addTaskBtn.addEventListener("click", () => {
@@ -42,6 +43,11 @@ class UI {
       this.hideTaskPopup();
       this.showAddTaskBtn();
     });
+
+    // Enables the all button to load all todos
+    this.allButton.addEventListener("click", () => {
+      this.showAllTodos();
+    });
   }
 
   showAddTaskBtn() {
@@ -62,8 +68,14 @@ class UI {
     this.taskPopup.style.display = "none";
   }
 
-  // TODO: add todo button
   // TODO: show all todos
+
+  showAllTodos() {
+    let allTodos = todoList.readItems();
+
+    return allTodos;
+  }
+
   // TODO: show today todos
   // TODO: show this week todos
   // TODO: create project
