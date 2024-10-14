@@ -32,13 +32,14 @@ class UI {
       const formData = new FormData(this.todoForm);
       const todoValue = formData.get("task");
 
-      // Addding to TodoList.items
+      // Adding to TodoList.items
       todoList.addItem(todoValue);
       console.log("Todo added:", todoValue);
 
       // Clear the input field
       this.todoForm.reset();
 
+      this.showAllTodos();
       this.hideTaskPopup();
       this.showAddTaskBtn();
     });
@@ -128,6 +129,7 @@ class UI {
   }
 
   showAllTodos() {
+    this.clearAllTodos();
     let allTodos = todoList.readItems();
     allTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
