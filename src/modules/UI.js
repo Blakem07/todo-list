@@ -58,11 +58,15 @@ class UI {
     });
 
     // Todo card checkbox functionality
-    this.addCheckboxEventListeners();
+    this.addTodoCardEventListeners();
   }
 
-  // NOT INCLUDED IN THE ABOVE AS IT NEEDS TO BE RE-RAN
-  addCheckboxEventListeners() {
+  addTodoCardEventListeners() {
+    // This method adds functionality to all the todo cards
+    // Must be called if a new card is created
+
+    // Card Checkboxes
+
     const cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
 
     cardCheckboxes.forEach((checkbox) => {
@@ -76,6 +80,24 @@ class UI {
           console.log(
             `Updated todo: ${todoItem.title}, Completed: ${todoItem.complete}`
           );
+        }
+      });
+    });
+
+    // Date input
+
+    const dateInput = document.querySelectorAll(".todo-card-date");
+
+    dateInput.forEach((date) => {
+      date.addEventListener("change", (event) => {
+        const todoCard = date.closest(".todo-card");
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        const todoItem = todoList.readItem(title);
+
+        console.log("hello");
+
+        if (todoItem) {
+          todoItem.dueDate = date.value; // Update the complete status based on checkbox
         }
       });
     });
@@ -132,7 +154,7 @@ class UI {
     this.cardList.appendChild(listEle);
 
     // Event listeners
-    this.addCheckboxEventListeners();
+    this.addTodoCardEventListeners();
   }
 
   showAllTodos() {
