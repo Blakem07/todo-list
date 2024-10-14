@@ -13,8 +13,12 @@ class UI {
     this.init();
   }
 
-  // Adds event listeners
+  // Initializes the page
   init() {
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
     // Opens the add task popup
     this.addTaskBtn.addEventListener("click", () => {
       this.hideAddTaskBtn();
@@ -56,7 +60,7 @@ class UI {
     this.addCheckboxEventListeners();
   }
 
-  // Needs to be re ran after creating new todos
+  // NOT INCLUDED IN THE ABOVE AS IT NEEDS TO BE RE-RAN
   addCheckboxEventListeners() {
     const cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
 
