@@ -7,6 +7,7 @@ class UI {
     this.todoForm = document.querySelector(".todo-form");
     this.formDeleteBtn = document.querySelector(".delete-button.form-button");
     this.cardList = document.querySelector("#card-list");
+    this.cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
     this.allButton = document.querySelector("#all-button");
 
     this.init();
@@ -49,6 +50,29 @@ class UI {
     this.allButton.addEventListener("click", () => {
       this.clearAllTodos();
       this.showAllTodos();
+    });
+
+    // Todo card checkbox functionality
+    this.addCheckboxEventListeners();
+  }
+
+  // Needs to be re ran after creating new todos
+  addCheckboxEventListeners() {
+    const cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
+
+    cardCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("click", (event) => {
+        const todoCard = checkbox.closest(".todo-card");
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        const todoItem = todoList.readItem(title);
+
+        if (todoItem) {
+          todoItem.complete = checkbox.checked; // Update the complete status based on checkbox
+          console.log(
+            `Updated todo: ${todoItem.title}, Completed: ${todoItem.complete}`
+          );
+        }
+      });
     });
   }
 
@@ -94,6 +118,9 @@ class UI {
     card.appendChild(checkbox);
     listEle.appendChild(card);
     this.cardList.appendChild(listEle);
+
+    // Event listeners
+    this.addCheckboxEventListeners();
   }
 
   showAllTodos() {
