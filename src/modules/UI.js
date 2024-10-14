@@ -47,8 +47,8 @@ class UI {
 
     // Enables the all button to load all todos
     this.allButton.addEventListener("click", () => {
+      this.clearAllTodos();
       this.showAllTodos();
-      console.log(ui.content);
     });
   }
 
@@ -94,6 +94,10 @@ class UI {
   showAllTodos() {
     let allTodos = todoList.readItems();
     allTodos.forEach((todoItem) => this.createTodoCard(todoItem));
+  }
+
+  clearAllTodos() {
+    this.cardList.innerHTML = "";
   }
 
   // TODO: show today todos
