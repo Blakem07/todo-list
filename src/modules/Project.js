@@ -1,3 +1,4 @@
+import todoList from "./TodoList";
 class Project {
   constructor() {
     this.myProjects = [];
@@ -36,4 +37,7 @@ class Project {
   }
 }
 
-export default Project;
+const project = new Project();
+todoList.linkProjectManager(project);
+
+export default todoList;

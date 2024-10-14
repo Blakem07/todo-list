@@ -1,3 +1,5 @@
+import todoList from "./Project";
+
 class UI {
   constructor() {
     this.addTaskBtn = document.querySelector("#add-todo-button");
@@ -22,12 +24,20 @@ class UI {
       const formData = new FormData(this.todoForm);
       const todoValue = formData.get("task");
 
-      // You can now use the taskValue to add to your to-do list
+      // Addding to TodoList.items
+      todoList.addItem(todoValue);
       console.log("Todo added:", todoValue);
 
       // Clear the input field
       this.todoForm.reset();
+
+      this.hideTaskPopup();
+      this.showAddTaskBtn();
     });
+  }
+
+  showAddTaskBtn() {
+    this.addTaskBtn.style.display = "block";
   }
 
   // Hides the addTaskBtn when the popup appears
@@ -40,6 +50,10 @@ class UI {
     this.taskPopup.style.display = "block";
   }
 
+  hideTaskPopup() {
+    this.taskPopup.style.display = "none";
+  }
+
   // TODO: add todo button
   // TODO: show all todos
   // TODO: show today todos
@@ -47,4 +61,6 @@ class UI {
   // TODO: create project
 }
 
-export default UI;
+const ui = new UI();
+
+export default todoList;

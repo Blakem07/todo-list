@@ -1,35 +1,27 @@
 import "./styles.css";
-import TodoList from "./modules/TodoList.js";
-import Project from "./modules/Project.js";
-import UI from "./modules/UI.js";
+import todoList from "./modules/UI.js";
 
-// Creating class instances
-window.TodoList = new TodoList();
-window.Project = new Project();
-window.UI = new UI();
-window.TodoList.linkProjectManager(window.Project);
-
-//
-console.log(window.TodoList);
+// Making global so I can fun functions in the console
+window.todoList = todoList;
 
 // Creating Dummy Todos
-window.TodoList.addItem("test1");
-window.TodoList.addItem("test2");
-window.TodoList.addItem("test3");
+todoList.addItem("test1");
+todoList.addItem("test2");
+todoList.addItem("test3");
 
 // Displaying dummy todos in console
-window.TodoList.readItems();
+todoList.readItems();
 
 // Creating dummy projects
-window.Project.createProject("project1");
-window.Project.createProject("project2");
-window.Project.createProject("project3");
+todoList.projectManager.createProject("project1");
+todoList.projectManager.createProject("project2");
+todoList.projectManager.createProject("project3");
 
 // Displaying dummy projects in console
-window.Project.readProjects();
+todoList.projectManager.readProjects();
 
 /*MAKE CHANGES TO PROPERTIES HERE*/
-console.log(window.UI.addTaskBtn);
+// console.log(window.UI.addTaskBtn);
 
 // Displaying changes
-console.log(window.TodoList.sortByProject("project2"));
+//console.log(window.TodoList.sortByProject("project2"));
