@@ -2,7 +2,7 @@ class UI {
   constructor() {
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
-    this.todoForm = document.querySelector(".task-form");
+    this.todoForm = document.querySelector(".todo-form");
 
     this.init();
   }
@@ -20,10 +20,10 @@ class UI {
       event.preventDefault(); // Prevent page refresh
 
       const formData = new FormData(this.todoForm);
-      const taskValue = formData.get("task");
+      const todoValue = formData.get("task");
 
       // You can now use the taskValue to add to your to-do list
-      console.log("Todo added:", taskValue);
+      console.log("Todo added:", todoValue);
 
       // Clear the input field
       this.todoForm.reset();

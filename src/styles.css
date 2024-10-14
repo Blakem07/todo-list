@@ -87,7 +87,7 @@ content {
   display: none;
 }
 
-.task-form {
+.todo-form {
   display: grid;
   grid-template-rows: 1fr 1fr;
   width: 800px;
@@ -116,12 +116,12 @@ footer {
   font-size: var(--font--size--button);
 }
 
-.task-form input {
+.todo-form input {
   width: 792px;
   font-size: var(--font--size--button);
 }
 
-.task-form div {
+.todo-form div {
   margin-top: 5px;
   justify-self: center;
   display: flex;
