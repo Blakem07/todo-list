@@ -2,13 +2,14 @@ import todoList from "./Project";
 
 class UI {
   constructor() {
+    this.allButton = document.querySelector("#all-button");
+    this.todayButton = document.querySelector("#today-button");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.todoForm = document.querySelector(".todo-form");
     this.formDeleteBtn = document.querySelector(".delete-button.form-button");
     this.cardList = document.querySelector("#card-list");
     this.cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
-    this.allButton = document.querySelector("#all-button");
 
     this.init();
   }
@@ -19,6 +20,20 @@ class UI {
   }
 
   addEventListeners() {
+    // -- ALL BTN --
+    this.allButton.addEventListener("click", () => {
+      this.clearAllTodos();
+      this.showAllTodos();
+    });
+
+    // --TODAY BTN--
+
+    this.todayButton.addEventListener("click", () => {
+      this.clearAllTodos();
+      console.log("You pressed the today button");
+      // Call the showAllTodos() wrapper here**;
+    });
+
     // Opens the add task popup
     this.addTaskBtn.addEventListener("click", () => {
       this.hideAddTaskBtn();
@@ -49,12 +64,6 @@ class UI {
       this.todoForm.reset();
       this.hideTaskPopup();
       this.showAddTaskBtn();
-    });
-
-    // Enables the all button to load all todos
-    this.allButton.addEventListener("click", () => {
-      this.clearAllTodos();
-      this.showAllTodos();
     });
 
     // Todo card checkbox functionality
@@ -93,8 +102,6 @@ class UI {
         const todoCard = date.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
         const todoItem = todoList.readItem(title);
-
-        console.log("hello");
 
         if (todoItem) {
           const dateString = date.value;
