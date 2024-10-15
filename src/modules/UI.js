@@ -97,7 +97,9 @@ class UI {
         console.log("hello");
 
         if (todoItem) {
-          todoItem.dueDate = date.value; // Update the complete status based on checkbox
+          const dateString = date.value;
+          const dateObj = new Date(dateString);
+          todoItem.dueDate = dateObj; // Dates stored within todo objects as Date Objects not strings
         }
       });
     });
