@@ -20,11 +20,21 @@
               <button class="nav-button" id="week-button">This Week</button>
             </div>
             <h3>Projects</h3>
-            <div class="project-todos">
-              <button class="nav-button" id="project-button">
-                Create Project
-              </button>
+            <button class="nav-button" id="project-button">
+              Create Project
+            </button>
+            <div class="project-popup">
+              <form class="text-form" id="task-form">
+                <input type="text" name="task" id="task" required />
+                <button type="button" class="delete-button form-button">
+                  Delete
+                </button>
+                <button type="submit" class="submit-button form-button">
+                  Submit
+                </button>
+              </form>
             </div>
+            <div class="project-todos"></div>
           </div>
         </div>
         <div class="main-right">
@@ -32,7 +42,7 @@
             <h3 id="content-header">Your Todos</h3>
             <button id="add-todo-button">Add Task +</button>
             <div class="task-popup">
-              <form class="text-form">
+              <form class="text-form" id="task-form">
                 <input type="text" name="task" id="task" required />
                 <button type="button" class="delete-button form-button">
                   Delete
