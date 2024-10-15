@@ -69,7 +69,6 @@ main {
 .project-todos {
   display: flex;
   flex-direction: column;
-  outline: 1px solid black;
   gap: 5px;
 }
 

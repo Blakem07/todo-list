@@ -5,6 +5,7 @@ class UI {
     this.allButton = document.querySelector("#all-button");
     this.todayButton = document.querySelector("#today-button");
     this.weekButton = document.querySelector("#week-button");
+    this.createProjectButton = document.querySelector("#project-button");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.todoForm = document.querySelector(".todo-form");
@@ -37,6 +38,11 @@ class UI {
     this.weekButton.addEventListener("click", () => {
       this.clearAllTodos();
       this.showWeekTodos();
+    });
+
+    // -- CREATE PROJECT BTN --
+    this.createProjectButton.addEventListener("click", () => {
+      this.hideCreateProjectBtn();
     });
 
     // Opens the add task popup
@@ -117,6 +123,14 @@ class UI {
     });
   }
 
+  showCreateProjectBtn() {
+    this.createProjectButton.style.display = "block";
+  }
+
+  hideCreateProjectBtn() {
+    this.createProjectButton.style.display = "none";
+  }
+
   showAddTaskBtn() {
     this.addTaskBtn.style.display = "block";
   }
@@ -191,8 +205,6 @@ class UI {
   clearAllTodos() {
     this.cardList.innerHTML = "";
   }
-
-  // TODO: create project
 }
 
 const ui = new UI();
