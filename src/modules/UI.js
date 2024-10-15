@@ -8,7 +8,7 @@ class UI {
     this.createProjectButton = document.querySelector("#project-button");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
-    this.todoForm = document.querySelector(".todo-form");
+    this.textForm = document.querySelector(".text-form");
     this.formDeleteBtn = document.querySelector(".delete-button.form-button");
     this.cardList = document.querySelector("#card-list");
     this.cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
@@ -52,10 +52,10 @@ class UI {
     });
 
     // Handles the form whereby users create todos
-    this.todoForm.addEventListener("submit", (event) => {
+    this.textForm.addEventListener("submit", (event) => {
       event.preventDefault(); // Prevent page refresh
 
-      const formData = new FormData(this.todoForm);
+      const formData = new FormData(this.textForm);
       const todoValue = formData.get("task");
 
       // Adding to TodoList.items
@@ -63,7 +63,7 @@ class UI {
       console.log("Todo added:", todoValue);
 
       // Clear the input field
-      this.todoForm.reset();
+      this.textForm.reset();
 
       this.showAllTodos();
       this.hideTaskPopup();
@@ -72,7 +72,7 @@ class UI {
 
     // Closes the todo create form without submitting
     this.formDeleteBtn.addEventListener("click", () => {
-      this.todoForm.reset();
+      this.textForm.reset();
       this.hideTaskPopup();
       this.showAddTaskBtn();
     });

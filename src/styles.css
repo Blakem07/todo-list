@@ -83,13 +83,13 @@ content {
 }
 
 .task-popup {
-  display: block;
-  width: 990px;
+  display: none;
+  width: 100%;
   height: 100px;
 }
 
 /* Width and height of the form are defined by its container for reusability*/
-.todo-form {
+.text-form {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
@@ -119,7 +119,7 @@ footer {
   font-size: var(--font--size--button);
 }
 
-.todo-form input {
+.text-form input {
   grid-column: 1 / 3;
   width: 98.8.5%;
   font-size: var(--font--size--button);
