@@ -109,6 +109,7 @@ class TodoList {
 
   // Sorting
   sortByToday() {
+    // Returns an array of todos which are due today
     const today = new Date();
     // Reset the time to 00:00:00 to compare only dates
     today.setHours(0, 0, 0, 0);
@@ -118,6 +119,27 @@ class TodoList {
       // Reset the time to 00:00:00 for the due date as well
       dueDate.setHours(0, 0, 0, 0);
       return dueDate.getTime() === today.getTime();
+    });
+  }
+
+  sortByWeek() {
+    const today = new Date();
+    const startOfWeek = new Date(today);
+    const endOfWeek = new Date(today);
+
+    // Set the start of the week to the last Monday (or today if it's Monday)
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // Adjust so Monday is the start
+    startOfWeek.setDate(today.getDate() - daysToSubtract);
+    startOfWeek.setHours(0, 0, 0, 0);
+
+    // Set the end of the week to the next Sunday
+    endOfWeek.setDate(today.getDate() + (7 - dayOfWeek)); // Adjust for Sunday
+    endOfWeek.setHours(23, 59, 59, 999);
+
+    return this.items.filter((item) => {
+      const dueDate = new Date(item.dueDate);
+      return dueDate >= startOfWeek && dueDate <= endOfWeek;
     });
   }
 

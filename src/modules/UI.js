@@ -4,6 +4,7 @@ class UI {
   constructor() {
     this.allButton = document.querySelector("#all-button");
     this.todayButton = document.querySelector("#today-button");
+    this.weekButton = document.querySelector("#week-button");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.todoForm = document.querySelector(".todo-form");
@@ -29,8 +30,13 @@ class UI {
     // -- TODAY BTN --
     this.todayButton.addEventListener("click", () => {
       this.clearAllTodos();
-      console.log("You pressed the today button");
       this.showTodayTodos();
+    });
+
+    // -- WEEK BTN --
+    this.weekButton.addEventListener("click", () => {
+      this.clearAllTodos();
+      this.showWeekTodos();
     });
 
     // Opens the add task popup
@@ -177,12 +183,15 @@ class UI {
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
+  showWeekTodos() {
+    let weekTodos = todoList.sortByWeek();
+    weekTodos.forEach((todoItem) => this.createTodoCard(todoItem));
+  }
+
   clearAllTodos() {
     this.cardList.innerHTML = "";
   }
 
-  // TODO: show today todos
-  // TODO: show this week todos
   // TODO: create project
 }
 
