@@ -153,6 +153,8 @@ class UI {
     // this.showAllProjects();
   }
 
+  // Project form
+
   showCreateProjectBtn() {
     this.createProjectButton.style.display = "block";
   }
@@ -169,16 +171,16 @@ class UI {
     this.projectPopup.style.display = "none";
   }
 
+  // Task form
+
   showAddTaskBtn() {
     this.addTaskBtn.style.display = "block";
   }
 
-  // Hides the addTaskBtn when the popup appears
   hideAddTaskBtn() {
     this.addTaskBtn.style.display = "none";
   }
 
-  // Allows the user to interact with the form to create todos
   showTaskPopup() {
     this.taskPopup.style.display = "block";
   }
@@ -186,6 +188,8 @@ class UI {
   hideTaskPopup() {
     this.taskPopup.style.display = "none";
   }
+
+  // -- CREATING TODO CARDS --
 
   createTodoCard(todoItem) {
     // The card
