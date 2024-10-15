@@ -8,7 +8,7 @@ class UI {
     this.createProjectButton = document.querySelector("#project-button");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
-    this.textForm = document.querySelector(".text-form");
+    this.textForm = document.querySelectorAll(".text-form");
     this.formDeleteBtn = document.querySelector(".delete-button.form-button");
     this.cardList = document.querySelector("#card-list");
     this.cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
@@ -52,22 +52,22 @@ class UI {
     });
 
     // Handles the form whereby users create todos
-    this.textForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevent page refresh
+    this.textForm.forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent page refresh
 
-      const formData = new FormData(this.textForm);
-      const todoValue = formData.get("task");
+        const formData = new FormData(form);
+        const formValue = formData.get("task") || formData.get("project");
 
-      // Adding to TodoList.items
-      todoList.addItem(todoValue);
-      console.log("Todo added:", todoValue);
+        if (form.id === "task-form") {
+          this.handleTodoSubmission(formValue);
+        } else if (form.id === "project-form") {
+          this.handleProjectSubmission(formValue);
+        }
 
-      // Clear the input field
-      this.textForm.reset();
-
-      this.showAllTodos();
-      this.hideTaskPopup();
-      this.showAddTaskBtn();
+        // Clear the input field
+        form.reset(); // Reset the current form
+      });
     });
 
     // Closes the todo create form without submitting
@@ -121,6 +121,25 @@ class UI {
         }
       });
     });
+  }
+
+  // -- FORM HANDLING --
+
+  // Function to handle Todo submission
+  handleTodoSubmission(value) {
+    todoList.addItem(value);
+    console.log("Todo added:", value);
+    this.showAllTodos();
+    this.hideTaskPopup();
+    this.showAddTaskBtn();
+  }
+
+  // Function to handle Project submission
+  handleProjectSubmission(value) {
+    todoList.projectManager.createProject(value);
+    console.log("Project added:", value);
+    // Uncomment the next line if you have a function to show all projects
+    // this.showAllProjects();
   }
 
   showCreateProjectBtn() {
