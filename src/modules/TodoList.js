@@ -108,6 +108,18 @@ class TodoList {
   }
 
   // Sorting
+  sortByToday() {
+    const today = new Date();
+    // Reset the time to 00:00:00 to compare only dates
+    today.setHours(0, 0, 0, 0);
+
+    return this.items.filter((item) => {
+      const dueDate = new Date(item.dueDate);
+      // Reset the time to 00:00:00 for the due date as well
+      dueDate.setHours(0, 0, 0, 0);
+      return dueDate.getTime() === today.getTime();
+    });
+  }
 
   sortByProject(name) {
     // Returns an array with TodoItems belonging to a particular project

@@ -26,12 +26,11 @@ class UI {
       this.showAllTodos();
     });
 
-    // --TODAY BTN--
-
+    // -- TODAY BTN --
     this.todayButton.addEventListener("click", () => {
       this.clearAllTodos();
       console.log("You pressed the today button");
-      // Call the showAllTodos() wrapper here**;
+      this.showTodayTodos();
     });
 
     // Opens the add task popup
@@ -170,6 +169,12 @@ class UI {
     this.clearAllTodos();
     let allTodos = todoList.readItems();
     allTodos.forEach((todoItem) => this.createTodoCard(todoItem));
+  }
+
+  showTodayTodos() {
+    this.clearAllTodos;
+    let todayTodos = todoList.sortByToday();
+    todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
   clearAllTodos() {
