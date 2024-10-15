@@ -6,10 +6,13 @@ class UI {
     this.todayButton = document.querySelector("#today-button");
     this.weekButton = document.querySelector("#week-button");
     this.createProjectButton = document.querySelector("#project-button");
+    this.projectPopup = document.querySelector(".project-popup");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.textForm = document.querySelectorAll(".text-form");
-    this.formDeleteBtn = document.querySelector(".delete-button.form-button");
+    this.formDeleteBtns = document.querySelectorAll(
+      ".delete-button.form-button"
+    );
     this.cardList = document.querySelector("#card-list");
     this.cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
 
@@ -43,6 +46,7 @@ class UI {
     // -- CREATE PROJECT BTN --
     this.createProjectButton.addEventListener("click", () => {
       this.hideCreateProjectBtn();
+      this.showProjectPopup();
     });
 
     // Opens the add task popup
@@ -70,13 +74,20 @@ class UI {
       });
     });
 
-    // Closes the todo create form without submitting
-    this.formDeleteBtn.addEventListener("click", () => {
-      this.textForm.reset();
-      this.hideTaskPopup();
-      this.showAddTaskBtn();
+    // -- ALL FORM DElETE BUTTONS --
+    this.formDeleteBtns.forEach((button) => {
+      button.addEventListener("click", () => {
+        const textForm = button.closest(".text-form");
+        textForm.reset();
+        if (textForm.id == "task-form") {
+          this.hideTaskPopup();
+          this.showAddTaskBtn();
+        } else {
+          this.hideProjectPopup();
+          this.showCreateProjectBtn();
+        }
+      });
     });
-
     // Todo card checkbox functionality
     this.addTodoCardEventListeners();
   }
@@ -148,6 +159,14 @@ class UI {
 
   hideCreateProjectBtn() {
     this.createProjectButton.style.display = "none";
+  }
+
+  showProjectPopup() {
+    this.projectPopup.style.display = "block";
+  }
+
+  hideProjectPopup() {
+    this.projectPopup.style.display = "none";
   }
 
   showAddTaskBtn() {

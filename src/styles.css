@@ -67,6 +67,7 @@ main {
 
 .project-popup {
   height: 80px;
+  display: none;
 }
 
 .general-todos {
