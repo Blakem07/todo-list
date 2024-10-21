@@ -1,6 +1,5 @@
 import "./styles.css";
 import todoList from "./modules/UI.js";
-import TodoItem from "./modules/TodoItem.js";
 
 // Making global so I can fun functions in the console
 window.todoList = todoList;

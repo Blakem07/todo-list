@@ -16,7 +16,7 @@ class Project {
       throw new Error("You have not created any projects");
     }
 
-    console.log(this.myProjects);
+    return this.myProjects;
   }
 
   readProject(name) {

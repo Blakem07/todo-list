@@ -7,6 +7,7 @@ class UI {
     this.weekButton = document.querySelector("#week-button");
     this.createProjectButton = document.querySelector("#project-button");
     this.projectPopup = document.querySelector(".project-popup");
+    this.projectCardList = document.querySelector(".project-todos");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.textForm = document.querySelectorAll(".text-form");
@@ -149,8 +150,7 @@ class UI {
   handleProjectSubmission(value) {
     todoList.projectManager.createProject(value);
     console.log("Project added:", value);
-    // Uncomment the next line if you have a function to show all projects
-    // this.showAllProjects();
+    this.showAllProjects();
   }
 
   // -- PROJECT POPUP --
@@ -187,6 +187,17 @@ class UI {
 
   hideTaskPopup() {
     this.taskPopup.style.display = "none";
+  }
+
+  // -- CREATING PROJECT CARDS --
+
+  createProjectCard(project) {
+    // Project being an item from the my projects array
+    // Called by showAllProjects() to display in the left side of the page
+    const card = document.createElement("button");
+    card.className = "project-card";
+    card.textContent = project;
+    this.projectCardList.appendChild(card);
   }
 
   // -- CREATING TODO CARDS --
@@ -251,6 +262,16 @@ class UI {
   }
 
   // -- SHOWING/HIDING PROJECTS --
+
+  showAllProjects() {
+    this.clearAllProjects();
+    let allProjects = todoList.projectManager.readProjects();
+    allProjects.forEach((project) => this.createProjectCard(project));
+  }
+
+  clearAllProjects() {
+    this.projectCardList.innerHTML = "";
+  }
 }
 
 const ui = new UI();
