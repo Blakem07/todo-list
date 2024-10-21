@@ -55,7 +55,7 @@ class UI {
       this.showTaskPopup();
     });
 
-    // Handles the form whereby users create todos
+    // -- TEXT INPUT FORM (PROJECTS/TODOS) --
     this.textForm.forEach((form) => {
       form.addEventListener("submit", (event) => {
         event.preventDefault(); // Prevent page refresh
@@ -153,7 +153,7 @@ class UI {
     // this.showAllProjects();
   }
 
-  // Project form
+  // -- PROJECT POPUP --
 
   showCreateProjectBtn() {
     this.createProjectButton.style.display = "block";
@@ -171,7 +171,7 @@ class UI {
     this.projectPopup.style.display = "none";
   }
 
-  // Task form
+  // -- TASK POPUP --
 
   showAddTaskBtn() {
     this.addTaskBtn.style.display = "block";
@@ -227,6 +227,8 @@ class UI {
     this.addTodoCardEventListeners();
   }
 
+  // -- SHOWING/HIDING TODOS --
+
   showAllTodos() {
     this.clearAllTodos();
     let allTodos = todoList.readItems();
@@ -247,6 +249,8 @@ class UI {
   clearAllTodos() {
     this.cardList.innerHTML = "";
   }
+
+  // -- SHOWING/HIDING PROJECTS --
 }
 
 const ui = new UI();
