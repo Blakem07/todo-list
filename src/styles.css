@@ -7,7 +7,7 @@
   --font--size--main: 15px;
 }
 
-/* Base Styles */
+/* -- BASE STYLES -- */
 
 body {
   font-family: sans-serif;
@@ -25,7 +25,7 @@ ul {
   list-style: none;
 }
 
-/* Layout Styles */
+/* -- LAYOUT STYLES -- */
 
 .layout {
   height: 100vh;
@@ -70,6 +70,12 @@ main {
   display: none;
 }
 
+.project-todos {
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+}
+
 .general-todos {
   display: flex;
   flex-direction: column;
@@ -107,12 +113,21 @@ footer {
   background-color: var(--secondary-color);
 }
 
-/* Components */
+/* -- COMPONENTS -- */
 
 .nav-button {
   background-color: transparent;
   padding: 10px;
   font-size: var(--font--size--button);
+}
+
+/*Project Cards*/
+
+.project-card {
+  background-color: transparent;
+  padding: 10px;
+  font-size: var(--font--size--button);
+  border-radius: 15px;
 }
 
 #add-todo-button {
@@ -168,9 +183,9 @@ footer {
   grid-column: 3 / 3;
 }
 
-/* Utilities */
+/* -- UTILITIES -- */
 
-/* State Styles */
+/* -- STATE STYLES -- */
 
 .nav-button:hover {
   font-size: calc(var(--font--size--button) + 1px);
@@ -181,4 +196,4 @@ footer {
   filter: brightness(0.8);
 }
 
-/* Media Queries */
+/* -- MEDIA QUERIES -- */
