@@ -46,14 +46,14 @@ class UI {
 
     // -- CREATE PROJECT BTN --
     this.createProjectButton.addEventListener("click", () => {
-      this.hideCreateProjectBtn();
-      this.showProjectPopup();
+      this.toggleButton(this.createProjectButton);
+      this.togglePopup(this.projectPopup, true);
     });
 
     // Opens the add task popup
     this.addTaskBtn.addEventListener("click", () => {
-      this.hideAddTaskBtn();
-      this.showTaskPopup();
+      this.toggleButton(this.addTaskBtn);
+      this.togglePopup(this.taskPopup, true);
     });
 
     // -- TEXT INPUT FORM (PROJECTS/TODOS) --
@@ -81,11 +81,11 @@ class UI {
         const textForm = button.closest(".text-form");
         textForm.reset();
         if (textForm.id == "task-form") {
-          this.hideTaskPopup();
-          this.showAddTaskBtn();
+          this.togglePopup(this.taskPopup);
+          this.toggleButton(this.addTaskBtn, true);
         } else {
-          this.hideProjectPopup();
-          this.showCreateProjectBtn();
+          this.togglePopup(this.projectPopup);
+          this.toggleButton(this.createProjectButton, true);
         }
       });
     });
@@ -142,8 +142,9 @@ class UI {
     todoList.addItem(value);
     console.log("Todo added:", value);
     this.showAllTodos();
-    this.hideTaskPopup();
-    this.showAddTaskBtn();
+
+    this.togglePopup(this.taskPopup);
+    this.toggleButton(this.addTaskBtn, true);
   }
 
   // Function to handle Project submission
@@ -151,42 +152,19 @@ class UI {
     todoList.projectManager.createProject(value);
     console.log("Project added:", value);
     this.showAllProjects();
+
+    this.togglePopup(this.projectPopup);
+    this.toggleButton(this.createProjectButton, true);
   }
 
-  // -- PROJECT POPUP --
+  // -- SHOW/HIDING POPUPS --
 
-  showCreateProjectBtn() {
-    this.createProjectButton.style.display = "block";
+  togglePopup(popup, show) {
+    popup.style.display = show ? "block" : "none";
   }
 
-  hideCreateProjectBtn() {
-    this.createProjectButton.style.display = "none";
-  }
-
-  showProjectPopup() {
-    this.projectPopup.style.display = "block";
-  }
-
-  hideProjectPopup() {
-    this.projectPopup.style.display = "none";
-  }
-
-  // -- TASK POPUP --
-
-  showAddTaskBtn() {
-    this.addTaskBtn.style.display = "block";
-  }
-
-  hideAddTaskBtn() {
-    this.addTaskBtn.style.display = "none";
-  }
-
-  showTaskPopup() {
-    this.taskPopup.style.display = "block";
-  }
-
-  hideTaskPopup() {
-    this.taskPopup.style.display = "none";
+  toggleButton(button, show) {
+    button.style.display = show ? "block" : "none";
   }
 
   // -- CREATING PROJECT CARDS --
