@@ -93,6 +93,14 @@ class UI {
     this.addTodoCardEventListeners();
   }
 
+  addProjectCardEventListeners(projectCard) {
+    // This method adds functionality to a project card
+
+    projectCard.addEventListener("click", () => {
+      console.log("pressed");
+    });
+  }
+
   addTodoCardEventListeners() {
     // This method adds functionality to all the todo cards
     // Must be called if a new card is created
@@ -175,6 +183,7 @@ class UI {
     const card = document.createElement("button");
     card.className = "project-card";
     card.textContent = project;
+    this.addProjectCardEventListeners(card);
     this.projectCardList.appendChild(card);
   }
 
