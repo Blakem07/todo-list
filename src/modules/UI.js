@@ -175,6 +175,13 @@ class UI {
     const card = document.createElement("button");
     card.className = "project-card";
     card.textContent = project;
+
+    // Event listner to show the projects
+    card.addEventListener("click", () => {
+      this.clearAllTodos();
+      this.showProjectTodos();
+    });
+
     this.projectCardList.appendChild(card);
   }
 
@@ -249,6 +256,12 @@ class UI {
 
   clearAllProjects() {
     this.projectCardList.innerHTML = "";
+  }
+
+  showProjectTodos() {
+    this.clearAllTodos();
+    let projectTodos = "Code me";
+    console.log(projectTodos);
   }
 }
 
