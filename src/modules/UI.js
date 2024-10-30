@@ -200,6 +200,10 @@ class UI {
     cardTitle.className = "todo-card-title";
     cardTitle.textContent = todoItem.title;
 
+    // The projects drop down
+    const projectSelect = document.createElement("select");
+    projectSelect.className = "todo-card-project-select";
+
     // The date
     const dateInput = document.createElement("input");
     dateInput.className = "todo-card-date";
@@ -217,6 +221,7 @@ class UI {
 
     // Appending
     card.appendChild(cardTitle);
+    card.appendChild(projectSelect);
     card.appendChild(dateInput);
     card.appendChild(checkbox);
     listEle.appendChild(card);
