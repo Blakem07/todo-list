@@ -97,7 +97,7 @@ class UI {
     // This method adds functionality to a project card
 
     projectCard.addEventListener("click", () => {
-      this.showProjectTodos();
+      this.showProjectTodos(projectCard.textContent);
     });
   }
 
@@ -235,7 +235,7 @@ class UI {
   }
 
   showTodayTodos() {
-    this.clearAllTodos;
+    this.clearAllTodos();
     let todayTodos = todoList.sortByToday();
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
@@ -261,10 +261,10 @@ class UI {
     this.projectCardList.innerHTML = "";
   }
 
-  showProjectTodos() {
+  showProjectTodos(projectName) {
     this.clearAllTodos();
-    let projectTodos = "Code me";
-    console.log(projectTodos);
+    let projectTodos = todoList.sortByProject(projectName);
+    projectTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 }
 

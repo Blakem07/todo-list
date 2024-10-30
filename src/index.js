@@ -19,5 +19,9 @@ todoList.projectManager.createProject("project1");
 todoList.projectManager.createProject("project2");
 todoList.projectManager.createProject("project3");
 
+// Adding todos to a project
+todoList.updateProject("test1", "project1");
+todoList.updateProject("test2", "project3");
+
 // Displaying dummy projects in console
 todoList.projectManager.readProjects();

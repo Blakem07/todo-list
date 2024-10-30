@@ -87,15 +87,12 @@ class TodoList {
     todo.complete = !todo.complete;
   }
 
-  updateProject(title) {
+  updateProject(title, projectName) {
     // Changes the project property
     const todo = this.readItem(title);
-    const change = prompt(
-      `What project would you like to assign this todo to?:`
-    );
-
-    if (this.projectManager.readProject(change)) {
-      todo.project = change;
+    
+    if (this.projectManager.readProject(projectName)) {
+      todo.project = projectName;
     }
   }
 
