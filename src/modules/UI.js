@@ -68,6 +68,7 @@ class UI {
           this.handleTodoSubmission(formValue);
         } else if (form.id === "project-form") {
           this.handleProjectSubmission(formValue);
+          this.populateAllTodoProjectDropdown();
         }
 
         // Clear the input field
@@ -75,7 +76,7 @@ class UI {
       });
     });
 
-    // -- ALL FORM DElETE BUTTONS --
+    // -- ALL FORM DELETE BUTTONS --
     this.formDeleteBtns.forEach((button) => {
       button.addEventListener("click", () => {
         const textForm = button.closest(".text-form");
@@ -249,10 +250,11 @@ class UI {
   // -- POPULATING TODO DROPDOWN --
 
   populateTodoProjectDropdown(todoCard) {
-    // Works the the HTML element card NOT the todoItem object
+    // arg: HTML element card NOT the todoItem object
     const projectDropdown = todoCard.querySelector(".todo-card-project-select");
-
     const allProjects = todoList.projectManager.readProjects();
+    projectDropdown.innerHTML = ""; // Clears existing to prevent duplicates
+    
     allProjects.forEach((project) => {
       const newOption = document.createElement("option");
       newOption.textContent = project;
@@ -260,6 +262,11 @@ class UI {
 
       projectDropdown.appendChild(newOption);
     });
+  }
+
+  populateAllTodoProjectDropdown() {
+    const todoCards = document.querySelectorAll(".todo-card");
+    todoCards.forEach((card) => this.populateTodoProjectDropdown(card));
   }
 
   showWeekTodos() {
