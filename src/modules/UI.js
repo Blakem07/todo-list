@@ -229,6 +229,7 @@ class UI {
 
     // Event listeners
     this.addTodoCardEventListeners();
+    this.populateTodoProjectDropdown(card);
   }
 
   // -- SHOWING/HIDING TODOS --
@@ -243,6 +244,22 @@ class UI {
     this.clearAllTodos();
     let todayTodos = todoList.sortByToday();
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
+  }
+
+  // -- POPULATING TODO DROPDOWN --
+
+  populateTodoProjectDropdown(todoCard) {
+    // Works the the HTML element card NOT the todoItem object
+    const projectDropdown = todoCard.querySelector(".todo-card-project-select");
+
+    const allProjects = todoList.projectManager.readProjects();
+    allProjects.forEach((project) => {
+      const newOption = document.createElement("option");
+      newOption.textContent = project;
+      newOption.value = project;
+
+      projectDropdown.appendChild(newOption);
+    });
   }
 
   showWeekTodos() {
