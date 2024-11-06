@@ -142,6 +142,24 @@ class UI {
         }
       });
     });
+
+    const projectDropdowns = document.querySelectorAll(
+      ".todo-card-project-select"
+    );
+
+    projectDropdowns.forEach((dropdown) => {
+      dropdown.addEventListener("change", () => {
+        const todoCard = dropdown.closest(".todo-card");
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        const todoItem = todoList.readItem(title);
+
+        if (todoItem && dropdown.value != "") {
+          // "" for the case of the default value
+          const project = dropdown.value;
+          todoItem.project = project;
+        }
+      });
+    });
   }
 
   // -- FORM HANDLING --
@@ -202,8 +220,8 @@ class UI {
     cardTitle.textContent = todoItem.title;
 
     // The projects drop down
-    const projectSelect = document.createElement("select");
-    projectSelect.className = "todo-card-project-select";
+    const projectDropdown = document.createElement("select");
+    projectDropdown.className = "todo-card-project-select";
 
     // The date
     const dateInput = document.createElement("input");
@@ -222,7 +240,7 @@ class UI {
 
     // Appending
     card.appendChild(cardTitle);
-    card.appendChild(projectSelect);
+    card.appendChild(projectDropdown);
     card.appendChild(dateInput);
     card.appendChild(checkbox);
     listEle.appendChild(card);
@@ -230,7 +248,12 @@ class UI {
 
     // Event listeners
     this.addTodoCardEventListeners();
+
+    // Sets default value after select has been rendered
     this.populateTodoProjectDropdown(card);
+    if (todoItem.project) {
+      projectDropdown.value = todoItem.project;
+    }
   }
 
   // -- SHOWING/HIDING TODOS --
@@ -250,11 +273,18 @@ class UI {
   // -- POPULATING TODO DROPDOWN --
 
   populateTodoProjectDropdown(todoCard) {
-    // arg: HTML element card NOT the todoItem object
+    // Arg: HTML element card NOT the todoItem object
     const projectDropdown = todoCard.querySelector(".todo-card-project-select");
     const allProjects = todoList.projectManager.readProjects();
     projectDropdown.innerHTML = ""; // Clears existing to prevent duplicates
-    
+
+    // Placeholder dropdown element
+    const emptyOption = document.createElement("option");
+    emptyOption.value = ""; // Empty value
+    emptyOption.textContent = "-- Please select a project --";
+    projectDropdown.appendChild(emptyOption);
+
+    // Populates dropdown with existing projects
     allProjects.forEach((project) => {
       const newOption = document.createElement("option");
       newOption.textContent = project;
@@ -262,6 +292,9 @@ class UI {
 
       projectDropdown.appendChild(newOption);
     });
+
+    // Selects the default project based on the todoItem.project
+    // projectDropdown.value = todoItem.project;
   }
 
   populateAllTodoProjectDropdown() {
