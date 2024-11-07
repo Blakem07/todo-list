@@ -143,6 +143,19 @@ class UI {
       });
     });
 
+    // Project name
+    const projectNames = document.querySelectorAll(".todo-card-project");
+    projectNames.forEach((project) => {
+      project.addEventListener("click", () => {
+        const todoCard = project.closest(".todo-card");
+        const dropdown = todoCard.querySelector(".todo-card-project-select");
+        this.togglePopup(project);
+        this.toggleButton(dropdown, true);
+      });
+    });
+
+    // Project dropdown
+
     const projectDropdowns = document.querySelectorAll(
       ".todo-card-project-select"
     );
@@ -152,12 +165,16 @@ class UI {
         const todoCard = dropdown.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
         const todoItem = todoList.readItem(title);
+        const project = todoCard.querySelector(".todo-card-project");
 
         if (todoItem && dropdown.value != "") {
           // "" for the case of the default value
           const project = dropdown.value;
           todoItem.project = project;
         }
+
+        this.toggleButton(dropdown); // Toggles the dropdown
+        this.togglePopup(project, true); // Shows the selected project
       });
     });
   }
@@ -169,7 +186,7 @@ class UI {
     todoList.addItem(value);
     console.log("Todo added:", value);
     this.showAllTodos();
-
+    console.log("Hello");
     this.togglePopup(this.taskPopup);
     this.toggleButton(this.addTaskBtn, true);
   }
@@ -187,6 +204,7 @@ class UI {
   // -- SHOW/HIDING POPUPS --
 
   togglePopup(popup, show) {
+    // Arg: show true or false
     popup.style.display = show ? "block" : "none";
   }
 
@@ -219,6 +237,13 @@ class UI {
     cardTitle.className = "todo-card-title";
     cardTitle.textContent = todoItem.title;
 
+    // The project name
+    const cardProject = document.createElement("p");
+    cardProject.className = "todo-card-project";
+    if (todoItem.project != "") {
+      cardProject.textContent = todoItem.project;
+    }
+
     // The projects drop down
     const projectDropdown = document.createElement("select");
     projectDropdown.className = "todo-card-project-select";
@@ -240,6 +265,7 @@ class UI {
 
     // Appending
     card.appendChild(cardTitle);
+    card.appendChild(cardProject);
     card.appendChild(projectDropdown);
     card.appendChild(dateInput);
     card.appendChild(checkbox);
@@ -269,6 +295,10 @@ class UI {
     let todayTodos = todoList.sortByToday();
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
+
+  // -- UPDATING TODO CARD PROJECT NAME --
+
+  // updateCardProject()
 
   // -- POPULATING TODO DROPDOWN --
 
