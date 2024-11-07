@@ -174,6 +174,7 @@ class UI {
         }
 
         this.toggleButton(dropdown); // Toggles the dropdown
+        this.updateCardProject(todoCard);
         this.togglePopup(project, true); // Shows the selected project
       });
     });
@@ -244,7 +245,7 @@ class UI {
       cardProject.textContent = todoItem.project;
     }
 
-    // The projects drop down
+    // The projects dropdown
     const projectDropdown = document.createElement("select");
     projectDropdown.className = "todo-card-project-select";
 
@@ -298,7 +299,12 @@ class UI {
 
   // -- UPDATING TODO CARD PROJECT NAME --
 
-  // updateCardProject()
+  updateCardProject(todoCard) {
+    const title = todoCard.querySelector(".todo-card-title").textContent;
+    const project = todoCard.querySelector(".todo-card-project");
+    const todoItem = todoList.readItem(title);
+    project.textContent = todoItem.project;
+  }
 
   // -- POPULATING TODO DROPDOWN --
 
