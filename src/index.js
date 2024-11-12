@@ -24,7 +24,6 @@ todoList.updateProject("test1", "project1");
 todoList.updateProject("test2", "project3");
 
 // Adding dates for testing
-todoList.updateDueDate("test1", "Monday1");
 
 // Displaying dummy projects in console
 todoList.projectManager.readProjects();

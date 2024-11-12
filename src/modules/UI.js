@@ -208,7 +208,6 @@ class UI {
     todoList.addItem(value);
     console.log("Todo added:", value);
     this.showAllTodos();
-    console.log("Hello");
     this.togglePopup(this.taskPopup);
     this.toggleButton(this.addTaskBtn, true);
   }
@@ -273,10 +272,10 @@ class UI {
     // The date
     const date = document.createElement("p");
     date.className = "todo-card-date";
-    if (todoItem.date) {
-      date.textContent = todoItem.date;
+    if (todoItem.dueDate) {
+      date.textContent = this.formatDate(todoItem.dueDate);
     } else {
-      date.textContent = "Add date...";
+      date.textContent = "Date...";
     }
 
     // The date input
