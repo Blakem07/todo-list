@@ -125,20 +125,40 @@ class UI {
       });
     });
 
+    // Date name
+
+    const dateName = document.querySelectorAll(".todo-card-date");
+
+    dateName.forEach((date) => {
+      date.addEventListener("click", () => {
+        const todoCard = date.closest(".todo-card");
+        const dateInput = todoCard.querySelector(".todo-card-date-input");
+        this.togglePopup(date);
+        this.toggleButton(dateInput, true);
+      });
+    });
+
     // Date input
 
     const dateInput = document.querySelectorAll(".todo-card-date-input");
 
     dateInput.forEach((date) => {
-      date.addEventListener("change", (event) => {
+      date.addEventListener("blur", () => {
         const todoCard = date.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
         const todoItem = todoList.readItem(title);
+        const dateName = todoCard.querySelector(".todo-card-date");
 
         if (todoItem) {
           const dateString = date.value;
           const dateObj = new Date(dateString);
           todoItem.dueDate = dateObj; // Dates stored within todo objects as Date Objects not strings
+
+          // Toggle verification
+          if (date.value.length == 10) {
+            this.togglePopup(date);
+            this.toggleButton(dateName, true);
+          }
         }
       });
     });
@@ -252,7 +272,11 @@ class UI {
     // The date
     const date = document.createElement("p");
     date.className = "todo-card-date";
-    date.textContent = todoItem.date;
+    if (todoItem.date) {
+      date.textContent = todoItem.date;
+    } else {
+      date.textContent = "Add date...";
+    }
 
     // The date input
     const dateInput = document.createElement("input");
