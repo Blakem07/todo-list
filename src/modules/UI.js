@@ -156,8 +156,9 @@ class UI {
 
           // Toggle verification
           if (date.value.length == 10) {
-            this.togglePopup(date);
-            this.toggleButton(dateName, true);
+            this.toggleButton(date);
+            this.updateTextContent(".todo-card-date", "dueDate", todoCard);
+            this.togglePopup(dateName, true);
           }
         }
       });
@@ -334,6 +335,14 @@ class UI {
     const project = todoCard.querySelector(".todo-card-project");
     const todoItem = todoList.readItem(title);
     project.textContent = todoItem.project;
+  }
+
+  updateTextContent(elementSelector, property, todoCard) {
+    // Arg Example: (".todo-card-date", "dueDate", todoCard)
+    const element = todoCard.querySelector(elementSelector);
+    const title = todoCard.querySelector(".todo-card-title").textContent;
+    const todoItem = todoList.readItem(title);
+    element.textContent = todoItem[property];
   }
 
   // -- POPULATING TODO DROPDOWN --
