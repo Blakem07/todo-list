@@ -335,7 +335,22 @@ class UI {
     const element = todoCard.querySelector(elementSelector);
     const title = todoCard.querySelector(".todo-card-title").textContent;
     const todoItem = todoList.readItem(title);
-    element.textContent = todoItem[property];
+
+    // Checks if date --> date needs formating before being displayed
+    if (property === "dueDate" && todoItem[property]) {
+      // If it's a date, format it before updating
+      element.textContent = this.formatDate(todoItem[property]);
+    } else {
+      // If it's not a date, update the text content normally
+      element.textContent = todoItem[property];
+    }
+  }
+
+  // -- FORMATTING DATE FOR DISPLAYING --
+
+  formatDate(date) {
+    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+    return new Date(date).toLocaleDateString("en-US", options);
   }
 
   // -- POPULATING TODO DROPDOWN --
