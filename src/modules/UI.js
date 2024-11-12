@@ -127,7 +127,7 @@ class UI {
 
     // Date input
 
-    const dateInput = document.querySelectorAll(".todo-card-date");
+    const dateInput = document.querySelectorAll(".todo-card-date-input");
 
     dateInput.forEach((date) => {
       date.addEventListener("change", (event) => {
@@ -250,8 +250,13 @@ class UI {
     projectDropdown.className = "todo-card-project-select";
 
     // The date
+    const date = document.createElement("p");
+    date.className = "todo-card-date";
+    date.textContent = todoItem.date;
+
+    // The date input
     const dateInput = document.createElement("input");
-    dateInput.className = "todo-card-date";
+    dateInput.className = "todo-card-date-input";
     dateInput.type = "date";
     dateInput.value = todoItem.dueDate;
 
@@ -268,6 +273,7 @@ class UI {
     card.appendChild(cardTitle);
     card.appendChild(cardProject);
     card.appendChild(projectDropdown);
+    card.appendChild(date);
     card.appendChild(dateInput);
     card.appendChild(checkbox);
     listEle.appendChild(card);

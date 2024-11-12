@@ -190,6 +190,12 @@ footer {
   grid-column: 3 / 3;
 }
 
+.todo-card-date-input {
+  display: none;
+  grid-row: 1 / 1;
+  grid-column: 3 / 3;
+}
+
 .todo-card-checkbox {
   grid-column: 4 / 4;
 }

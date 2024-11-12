@@ -66,11 +66,9 @@ class TodoList {
     todo.description = change;
   }
 
-  updateDueDate(title) {
+  updateDueDate(title, date) {
     const todo = this.readItem(title);
-
-    const change = prompt(`What would you like to change the due date to?:`);
-    todo.dueDate = change;
+    todo.dueDate = date;
   }
 
   updatePriority(title) {
@@ -90,7 +88,7 @@ class TodoList {
   updateProject(title, projectName) {
     // Changes the project property
     const todo = this.readItem(title);
-    
+
     if (this.projectManager.readProject(projectName)) {
       todo.project = projectName;
     }
