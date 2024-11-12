@@ -195,7 +195,7 @@ class UI {
         }
 
         this.toggleButton(dropdown); // Toggles the dropdown
-        this.updateCardProject(todoCard);
+        this.updateTextContent(".todo-card-project", "project", todoCard);
         this.togglePopup(project, true); // Shows the selected project
       });
     });
@@ -328,14 +328,7 @@ class UI {
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
-  // -- UPDATING TODO CARD PROJECT NAME --
-
-  updateCardProject(todoCard) {
-    const title = todoCard.querySelector(".todo-card-title").textContent;
-    const project = todoCard.querySelector(".todo-card-project");
-    const todoItem = todoList.readItem(title);
-    project.textContent = todoItem.project;
-  }
+  // -- UPDATING TODO CARD TEXT CONTENT --
 
   updateTextContent(elementSelector, property, todoCard) {
     // Arg Example: (".todo-card-date", "dueDate", todoCard)
