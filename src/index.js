@@ -9,10 +9,10 @@ const project = new Project();
 todoList.linkProjectManager(project); // Linking to todoList as it needs to access projects
 const ui = new UI(todoList);
 
-// ---------- FIX LIST ---------- 
+// ---------- FIX LIST ----------
 /*
-1. Create a way to delete projects
-2. Create a way to delete todoCards
+1. Create a way to delete todoCards
+2. Create a way to delete Projects
 3. Ensure todoCards dont distort when projects are added
 4. Have a placeholder value which informs user they can add a project
 */
