@@ -1,4 +1,4 @@
-import TodoItem from "./TodoItem.js";
+import TodoItem from "./TodoItem";
 
 class TodoList {
   constructor() {
@@ -147,6 +147,4 @@ class TodoList {
   }
 }
 
-const todoList = new TodoList();
-
-export default todoList;
+export default TodoList;

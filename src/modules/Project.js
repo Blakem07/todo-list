@@ -1,4 +1,3 @@
-import todoList from "./TodoList";
 class Project {
   constructor() {
     this.myProjects = [];
@@ -12,10 +11,6 @@ class Project {
 
   readProjects() {
     // Reads the myProjects property which is an array
-    if (this.myProjects.length == 0) {
-      throw new Error("You have not created any projects");
-    }
-
     return this.myProjects;
   }
 
@@ -37,7 +32,4 @@ class Project {
   }
 }
 
-const project = new Project();
-todoList.linkProjectManager(project);
-
-export default todoList;
+export default Project;

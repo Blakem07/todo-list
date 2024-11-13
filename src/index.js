@@ -1,29 +1,18 @@
 import "./styles.css";
-import todoList from "./modules/UI.js";
+import TodoList from "./modules/TodoList.js";
+import Project from "./modules/Project.js";
+import UI from "./modules/UI.js";
 
-// Making global so I can fun functions in the console
-window.todoList = todoList;
+// Instances
+const todoList = new TodoList();
+const project = new Project();
+todoList.linkProjectManager(project); // Linking to todoList as it needs to access projects
+const ui = new UI(todoList);
 
-// Creating Dummy Todos
-todoList.addItem("test1");
-todoList.addItem("test2");
-todoList.addItem("test3");
-
-todoList.updateComplete("test3");
-
-// Displaying dummy todos in console
-todoList.readItems();
-
-// Creating dummy projects
-todoList.projectManager.createProject("project1");
-todoList.projectManager.createProject("project2");
-todoList.projectManager.createProject("project3");
-
-// Adding todos to a project
-todoList.updateProject("test1", "project1");
-todoList.updateProject("test2", "project3");
-
-// Adding dates for testing
-
-// Displaying dummy projects in console
-todoList.projectManager.readProjects();
+// ---------- FIX LIST ---------- 
+/*
+1. Create a way to delete projects
+2. Create a way to delete todoCards
+3. Ensure todoCards dont distort when projects are added
+4. Have a placeholder value which informs user they can add a project
+*/

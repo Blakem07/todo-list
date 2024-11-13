@@ -1,7 +1,7 @@
-import todoList from "./Project";
-
 class UI {
-  constructor() {
+  constructor(todoList) {
+    this.todoList = todoList;
+
     this.allButton = document.querySelector("#all-button");
     this.todayButton = document.querySelector("#today-button");
     this.weekButton = document.querySelector("#week-button");
@@ -114,7 +114,7 @@ class UI {
       checkbox.addEventListener("click", (event) => {
         const todoCard = checkbox.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
-        const todoItem = todoList.readItem(title);
+        const todoItem = this.todoList.readItem(title);
 
         if (todoItem) {
           todoItem.complete = checkbox.checked; // Update the complete status based on checkbox
@@ -146,7 +146,7 @@ class UI {
       date.addEventListener("blur", () => {
         const todoCard = date.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
-        const todoItem = todoList.readItem(title);
+        const todoItem = this.todoList.readItem(title);
         const dateName = todoCard.querySelector(".todo-card-date");
 
         if (todoItem) {
@@ -185,7 +185,7 @@ class UI {
       dropdown.addEventListener("change", () => {
         const todoCard = dropdown.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
-        const todoItem = todoList.readItem(title);
+        const todoItem = this.todoList.readItem(title);
         const project = todoCard.querySelector(".todo-card-project");
 
         if (todoItem && dropdown.value != "") {
@@ -205,7 +205,7 @@ class UI {
 
   // Function to handle Todo submission
   handleTodoSubmission(value) {
-    todoList.addItem(value);
+    this.todoList.addItem(value);
     console.log("Todo added:", value);
     this.showAllTodos();
     this.togglePopup(this.taskPopup);
@@ -214,7 +214,7 @@ class UI {
 
   // Function to handle Project submission
   handleProjectSubmission(value) {
-    todoList.projectManager.createProject(value);
+    this.todoList.projectManager.createProject(value);
     console.log("Project added:", value);
     this.showAllProjects();
 
@@ -317,13 +317,13 @@ class UI {
 
   showAllTodos() {
     this.clearAllTodos();
-    let allTodos = todoList.readItems();
+    let allTodos = this.todoList.readItems();
     allTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
   showTodayTodos() {
     this.clearAllTodos();
-    let todayTodos = todoList.sortByToday();
+    let todayTodos = this.todoList.sortByToday();
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
@@ -333,7 +333,7 @@ class UI {
     // Arg Example: (".todo-card-date", "dueDate", todoCard)
     const element = todoCard.querySelector(elementSelector);
     const title = todoCard.querySelector(".todo-card-title").textContent;
-    const todoItem = todoList.readItem(title);
+    const todoItem = this.todoList.readItem(title);
 
     // Checks if date --> date needs formating before being displayed
     if (property === "dueDate" && todoItem[property]) {
@@ -357,7 +357,7 @@ class UI {
   populateTodoProjectDropdown(todoCard) {
     // Arg: HTML element card NOT the todoItem object
     const projectDropdown = todoCard.querySelector(".todo-card-project-select");
-    const allProjects = todoList.projectManager.readProjects();
+    const allProjects = this.todoList.projectManager.readProjects();
     projectDropdown.innerHTML = ""; // Clears existing to prevent duplicates
 
     // Placeholder dropdown element
@@ -385,7 +385,7 @@ class UI {
   }
 
   showWeekTodos() {
-    let weekTodos = todoList.sortByWeek();
+    let weekTodos = this.todoList.sortByWeek();
     weekTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
@@ -397,7 +397,7 @@ class UI {
 
   showAllProjects() {
     this.clearAllProjects();
-    let allProjects = todoList.projectManager.readProjects();
+    let allProjects = this.todoList.projectManager.readProjects();
     allProjects.forEach((project) => this.createProjectCard(project));
   }
 
@@ -407,11 +407,9 @@ class UI {
 
   showProjectTodos(projectName) {
     this.clearAllTodos();
-    let projectTodos = todoList.sortByProject(projectName);
+    let projectTodos = this.todoList.sortByProject(projectName);
     projectTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 }
 
-const ui = new UI();
-
-export default todoList;
+export default UI;
