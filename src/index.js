@@ -16,3 +16,5 @@ const ui = new UI(todoList);
 3. Ensure todoCards dont distort when projects are added
 4. Have a placeholder value which informs user they can add a project
 */
+
+// Add event listener to the delete button

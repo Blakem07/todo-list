@@ -253,6 +253,12 @@ class UI {
     const card = document.createElement("div");
     card.className = "todo-card";
 
+    // The checkbox
+    const checkbox = document.createElement("input");
+    checkbox.className = "todo-card-checkbox";
+    checkbox.type = "checkbox";
+    checkbox.checked = todoItem.complete; // Checkbox will load checked if true
+
     // The title
     const cardTitle = document.createElement("p");
     cardTitle.className = "todo-card-title";
@@ -260,9 +266,11 @@ class UI {
 
     // The project name
     const cardProject = document.createElement("p");
-    cardProject.className = "todo-card-project";
-    if (todoItem.project != "") {
+    cardProject.className = "todo-card-project todo-card-input";
+    if (todoItem.project != null) {
       cardProject.textContent = todoItem.project;
+    } else {
+      cardProject.textContent = "Project...";
     }
 
     // The projects dropdown
@@ -271,7 +279,7 @@ class UI {
 
     // The date
     const date = document.createElement("p");
-    date.className = "todo-card-date";
+    date.className = "todo-card-date todo-card-input";
     if (todoItem.dueDate) {
       date.textContent = this.formatDate(todoItem.dueDate);
     } else {
@@ -284,22 +292,21 @@ class UI {
     dateInput.type = "date";
     dateInput.value = todoItem.dueDate;
 
-    // The checkbox
-    const checkbox = document.createElement("input");
-    checkbox.className = "todo-card-checkbox";
-    checkbox.type = "checkbox";
-    checkbox.checked = todoItem.complete; // Checkbox will load checked if true
+    // Delete card button
+    const deleteTodoButton = document.createElement("button");
+    deleteTodoButton.className = "todo-delete-button todo-card-input";
 
-    //  List element
+    //  List element - todoCards are appended to a list
     const listEle = document.createElement("li");
 
     // Appending
+    card.appendChild(checkbox);
     card.appendChild(cardTitle);
     card.appendChild(cardProject);
     card.appendChild(projectDropdown);
     card.appendChild(date);
     card.appendChild(dateInput);
-    card.appendChild(checkbox);
+    card.appendChild(deleteTodoButton);
     listEle.appendChild(card);
     this.cardList.appendChild(listEle);
 

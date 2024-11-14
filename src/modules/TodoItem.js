@@ -5,7 +5,7 @@ class TodoItem {
     this.dueDate = dueDate;
     this.priority = priority;
     this.complete = false;
-    this.project;
+    this.project = null;
   }
 }
 

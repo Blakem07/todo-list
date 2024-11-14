@@ -230,4 +230,8 @@ footer {
   filter: brightness(0.8);
 }
 
+.todo-card-input:hover {
+  transform: scale(1.1);
+}
+
 /* -- MEDIA QUERIES -- */
