@@ -24,6 +24,8 @@ class UI {
   init() {
     this.addEventListeners();
     this.addTodoCardEventListeners();
+    this.showAllTodos();
+    this.showAllProjects();
   }
 
   addEventListeners() {
