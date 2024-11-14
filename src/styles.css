@@ -205,7 +205,7 @@ footer {
   grid-column: 4 / 4;
 }
 
-.todo-delete-button {
+.todo-card-delete-button {
   height: 30px;
   width: 30px;
   place-self: center;

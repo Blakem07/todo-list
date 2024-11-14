@@ -4,10 +4,10 @@ import Project from "./modules/Project.js";
 import UI from "./modules/UI.js";
 
 // Instances
-const todoList = new TodoList();
+window.todoList = new TodoList();
 const project = new Project();
-todoList.linkProjectManager(project); // Linking to todoList as it needs to access projects
-const ui = new UI(todoList);
+window.todoList.linkProjectManager(project); // Linking to todoList as it needs to access projects
+const ui = new UI(window.todoList);
 
 // ---------- FIX LIST ----------
 /*

@@ -23,6 +23,7 @@ class UI {
   // Initializes the page
   init() {
     this.addEventListeners();
+    this.addTodoCardEventListeners();
   }
 
   addEventListeners() {
@@ -90,8 +91,6 @@ class UI {
         }
       });
     });
-    // Todo card checkbox functionality
-    this.addTodoCardEventListeners();
   }
 
   addProjectCardEventListeners(projectCard) {
@@ -101,7 +100,7 @@ class UI {
       this.showProjectTodos(projectCard.textContent);
     });
   }
-
+  /*
   addTodoCardEventListeners() {
     // This method adds functionality to all the todo cards
     // Must be called if a new card is created
@@ -200,6 +199,95 @@ class UI {
       });
     });
   }
+  */
+
+  addTodoCardEventListeners() {
+    // Called on page load by init()
+    // Attach event listener to the parent container (delegation)
+    this.cardList.addEventListener("click", (event) => {
+      const target = event.target;
+
+      // Handle checkbox click
+      if (target.classList.contains("todo-card-checkbox")) {
+        const todoCard = target.closest(".todo-card");
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        const todoItem = this.todoList.readItem(title);
+
+        if (todoItem) {
+          todoItem.complete = target.checked; // Update the complete status based on checkbox
+        }
+      }
+
+      // Handle date name click
+      if (target.classList.contains("todo-card-date")) {
+        const todoCard = target.closest(".todo-card");
+        const dateInput = todoCard.querySelector(".todo-card-date-input");
+        this.togglePopup(target);
+        this.toggleButton(dateInput, true);
+      }
+
+      // Handle project name click
+      if (target.classList.contains("todo-card-project")) {
+        const todoCard = target.closest(".todo-card");
+        const dropdown = todoCard.querySelector(".todo-card-project-select");
+        this.togglePopup(target);
+        this.toggleButton(dropdown, true);
+      }
+
+      // Handle delete button click
+      if (target.classList.contains("todo-card-delete-button")) {
+        const todoCard = target.closest(".todo-card");
+        const parent = todoCard.parentElement;
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        this.todoList.deleteTodo(title);
+        todoCard.remove();
+        parent.remove();
+      }
+    });
+
+    this.cardList.addEventListener("focusout", (event) => {
+      const target = event.target;
+      if (target.classList.contains("todo-card-date-input")) {
+        const todoCard = target.closest(".todo-card");
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        const todoItem = this.todoList.readItem(title);
+        const dateName = todoCard.querySelector(".todo-card-date");
+
+        if (todoItem) {
+          const dateString = target.value;
+          const dateObj = new Date(dateString);
+          todoItem.dueDate = dateObj; // Dates stored within todo objects as Date Objects not strings
+
+          // Toggle verification
+          if (dateString.length == 10) {
+            // Check for valid date format
+            this.toggleButton(target);
+            this.updateTextContent(".todo-card-date", "dueDate", todoCard);
+            this.togglePopup(dateName, true);
+          }
+        }
+      }
+    });
+
+    // Handle project dropdown change event
+    this.cardList.addEventListener("change", (event) => {
+      const target = event.target;
+      if (target.classList.contains("todo-card-project-select")) {
+        const todoCard = target.closest(".todo-card");
+        const title = todoCard.querySelector(".todo-card-title").textContent;
+        const todoItem = this.todoList.readItem(title);
+        const project = todoCard.querySelector(".todo-card-project");
+
+        if (todoItem && target.value != "") {
+          // Avoid default empty value
+          todoItem.project = target.value;
+          this.toggleButton(target); // Toggles the dropdown
+          this.updateTextContent(".todo-card-project", "project", todoCard);
+          this.togglePopup(project, true); // Shows the selected project
+        }
+      }
+    });
+  }
 
   // -- FORM HANDLING --
 
@@ -294,7 +382,7 @@ class UI {
 
     // Delete card button
     const deleteTodoButton = document.createElement("button");
-    deleteTodoButton.className = "todo-delete-button todo-card-input";
+    deleteTodoButton.className = "todo-card-delete-button todo-card-input";
 
     //  List element - todoCards are appended to a list
     const listEle = document.createElement("li");
@@ -309,9 +397,6 @@ class UI {
     card.appendChild(deleteTodoButton);
     listEle.appendChild(card);
     this.cardList.appendChild(listEle);
-
-    // Event listeners
-    this.addTodoCardEventListeners();
 
     // Sets default value after select has been rendered
     this.populateTodoProjectDropdown(card);
