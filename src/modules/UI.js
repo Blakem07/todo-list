@@ -102,106 +102,6 @@ class UI {
       this.showProjectTodos(projectCard.textContent);
     });
   }
-  /*
-  addTodoCardEventListeners() {
-    // This method adds functionality to all the todo cards
-    // Must be called if a new card is created
-
-    // Card Checkboxes
-
-    const cardCheckboxes = document.querySelectorAll(".todo-card-checkbox");
-
-    cardCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener("click", (event) => {
-        const todoCard = checkbox.closest(".todo-card");
-        const title = todoCard.querySelector(".todo-card-title").textContent;
-        const todoItem = this.todoList.readItem(title);
-
-        if (todoItem) {
-          todoItem.complete = checkbox.checked; // Update the complete status based on checkbox
-          console.log(
-            `Updated todo: ${todoItem.title}, Completed: ${todoItem.complete}`
-          );
-        }
-      });
-    });
-
-    // Date name
-
-    const dateName = document.querySelectorAll(".todo-card-date");
-
-    dateName.forEach((date) => {
-      date.addEventListener("click", () => {
-        const todoCard = date.closest(".todo-card");
-        const dateInput = todoCard.querySelector(".todo-card-date-input");
-        this.togglePopup(date);
-        this.toggleButton(dateInput, true);
-      });
-    });
-
-    // Date input
-
-    const dateInput = document.querySelectorAll(".todo-card-date-input");
-
-    dateInput.forEach((date) => {
-      date.addEventListener("blur", () => {
-        const todoCard = date.closest(".todo-card");
-        const title = todoCard.querySelector(".todo-card-title").textContent;
-        const todoItem = this.todoList.readItem(title);
-        const dateName = todoCard.querySelector(".todo-card-date");
-
-        if (todoItem) {
-          const dateString = date.value;
-          const dateObj = new Date(dateString);
-          todoItem.dueDate = dateObj; // Dates stored within todo objects as Date Objects not strings
-
-          // Toggle verification
-          if (date.value.length == 10) {
-            this.toggleButton(date);
-            this.updateTextContent(".todo-card-date", "dueDate", todoCard);
-            this.togglePopup(dateName, true);
-          }
-        }
-      });
-    });
-
-    // Project name
-    const projectNames = document.querySelectorAll(".todo-card-project");
-    projectNames.forEach((project) => {
-      project.addEventListener("click", () => {
-        const todoCard = project.closest(".todo-card");
-        const dropdown = todoCard.querySelector(".todo-card-project-select");
-        this.togglePopup(project);
-        this.toggleButton(dropdown, true);
-      });
-    });
-
-    // Project dropdown
-
-    const projectDropdowns = document.querySelectorAll(
-      ".todo-card-project-select"
-    );
-
-    projectDropdowns.forEach((dropdown) => {
-      dropdown.addEventListener("change", () => {
-        const todoCard = dropdown.closest(".todo-card");
-        const title = todoCard.querySelector(".todo-card-title").textContent;
-        const todoItem = this.todoList.readItem(title);
-        const project = todoCard.querySelector(".todo-card-project");
-
-        if (todoItem && dropdown.value != "") {
-          // "" for the case of the default value
-          const project = dropdown.value;
-          todoItem.project = project;
-        }
-
-        this.toggleButton(dropdown); // Toggles the dropdown
-        this.updateTextContent(".todo-card-project", "project", todoCard);
-        this.togglePopup(project, true); // Shows the selected project
-      });
-    });
-  }
-  */
 
   addTodoCardEventListeners() {
     // Called on page load by init()
@@ -297,7 +197,8 @@ class UI {
   handleTodoSubmission(value) {
     this.todoList.addItem(value);
     console.log("Todo added:", value);
-    this.showAllTodos();
+    const todoItem = todoList.readItem(value);
+    this.createTodoCard(todoItem); // Adds the newly created to without re-rendering entire array
     this.togglePopup(this.taskPopup);
     this.toggleButton(this.addTaskBtn, true);
   }
