@@ -70,7 +70,7 @@ main {
   display: none;
 }
 
-.project-todos {
+.projects-container {
   margin-top: 3px;
   display: flex;
   flex-direction: column;

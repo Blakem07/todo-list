@@ -7,7 +7,7 @@ class UI {
     this.weekButton = document.querySelector("#week-button");
     this.createProjectButton = document.querySelector("#project-button");
     this.projectPopup = document.querySelector(".project-popup");
-    this.projectCardList = document.querySelector(".project-todos");
+    this.projectsContainer = document.querySelector(".projects-container");
     this.addTaskBtn = document.querySelector("#add-todo-button");
     this.taskPopup = document.querySelector(".task-popup");
     this.textForm = document.querySelectorAll(".text-form");
@@ -23,6 +23,7 @@ class UI {
   // Initializes the page
   init() {
     this.addEventListeners();
+    this.addProjectCardEventListeners();
     this.addTodoCardEventListeners();
     this.showAllTodos();
     this.showAllProjects();
@@ -95,11 +96,14 @@ class UI {
     });
   }
 
-  addProjectCardEventListeners(projectCard) {
-    // This method adds functionality to a project card
+  addProjectCardEventListeners() {
+    this.projectsContainer.addEventListener("click", (event) => {
+      const target = event.target;
 
-    projectCard.addEventListener("click", () => {
-      this.showProjectTodos(projectCard.textContent);
+      if (target.classList.contains("project-card")) {
+        const projectCard = target.closest(".project-card");
+        this.showProjectTodos(projectCard.textContent);
+      }
     });
   }
 
@@ -233,8 +237,7 @@ class UI {
     card.className = "project-card";
     card.textContent = project;
 
-    this.addProjectCardEventListeners(card);
-    this.projectCardList.appendChild(card);
+    this.projectsContainer.appendChild(card);
   }
 
   // -- CREATING TODO CARDS --
@@ -397,7 +400,7 @@ class UI {
   }
 
   clearAllProjects() {
-    this.projectCardList.innerHTML = "";
+    this.projectsContainer.innerHTML = "";
   }
 
   showProjectTodos(projectName) {
