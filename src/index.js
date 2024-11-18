@@ -35,7 +35,7 @@ const ui = new UI(window.todoList);
 
 // ---------- FIX LIST ----------
 /*
-1. Use event delegation for projects
+1. Implement local storage
 2. Create a way to delete Projects
 3. Ensure todoCards dont distort when projects are added
 */
