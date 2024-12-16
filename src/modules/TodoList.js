@@ -1,9 +1,11 @@
 import TodoItem from "./TodoItem";
+import LocalStorageManager from "./LocalStorageManager";
 
 class TodoList {
   constructor() {
     this.items = [];
     this.projectManager;
+    this.loadFromLocalStorage();
   }
 
   linkProjectManager(project) {
@@ -18,6 +20,7 @@ class TodoList {
     // Adds a new todo using the TodoItem class
     let newTodoItem = new TodoItem(title, description, dueDate, priority);
     this.items.push(newTodoItem);
+    this.saveToLocalStorage(); // Save to localStorage after adding a new item
   }
 
   readItems() {
@@ -57,6 +60,7 @@ class TodoList {
 
     const change = prompt(`What would you like to change the title to?:`);
     todo.title = change;
+    this.saveToLocalStorage(); // Save changes to localStorage
   }
 
   updateDescription(title) {
@@ -64,11 +68,13 @@ class TodoList {
 
     const change = prompt(`What would you like to change the description to?:`);
     todo.description = change;
+    this.saveToLocalStorage(); // Save changes to localStorage
   }
 
   updateDueDate(title, date) {
     const todo = this.readItem(title);
     todo.dueDate = date;
+    this.saveToLocalStorage(); // Save changes to localStorage
   }
 
   updatePriority(title) {
@@ -76,6 +82,7 @@ class TodoList {
 
     const change = prompt(`What would you like to change the priority to?:`);
     todo.priority = change;
+    this.saveToLocalStorage(); // Save changes to localStorage
   }
 
   updateComplete(title) {
@@ -83,6 +90,7 @@ class TodoList {
     const todo = this.readItem(title);
 
     todo.complete = !todo.complete;
+    this.saveToLocalStorage(); // Save changes to localStorage
   }
 
   updateProject(title, projectName) {
@@ -91,6 +99,7 @@ class TodoList {
 
     if (this.projectManager.readProject(projectName)) {
       todo.project = projectName;
+      this.saveToLocalStorage(); // Save changes to localStorage
     }
   }
 
@@ -100,6 +109,7 @@ class TodoList {
     const index = this.items.indexOf(todo);
 
     this.items.splice(index, 1);
+    this.saveToLocalStorage(); // Save changes to localStorage
   }
 
   // Sorting
@@ -144,6 +154,41 @@ class TodoList {
       const itemsByProject = this.items.filter((item) => item.project == name);
       return itemsByProject;
     }
+  }
+
+  // LOCAL STORAGE
+
+  // Save the todo list to localStorage
+  saveToLocalStorage() {
+    LocalStorageManager.setItem("todoList", this.items);
+  }
+
+  // Method to load the todo list from localStorage and initialize the items array
+  loadFromLocalStorage() {
+    // Retrieve the todo list data from localStorage using LocalStorageManager
+    const loadedItems = LocalStorageManager.getItem("todoList");
+
+    // Check if the loaded data exists and is an array
+    if (loadedItems && Array.isArray(loadedItems)) {
+      // Map through each item in the loaded array and create a new TodoItem instance
+      // This step transforms the raw data into instances of the TodoItem class with proper attributes
+      // Because after being parsed it looses its original class
+      this.items = loadedItems.map(
+        (item) =>
+          new TodoItem(
+            item.title, // Title of the todo item
+            item.description, // Description of the todo item
+            item.dueDate, // Due date for the todo item
+            item.priority // Priority level of the todo item
+          )
+      );
+    }
+  }
+
+  // Clear the todo list from localStorage (optional)
+  clearStorage() {
+    LocalStorageManager.clear();
+    this.items = [];
   }
 }
 
