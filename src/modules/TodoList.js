@@ -176,12 +176,38 @@ class TodoList {
       this.items = loadedItems.map(
         (item) =>
           new TodoItem(
-            item.title, // Title of the todo item
-            item.description, // Description of the todo item
-            item.dueDate, // Due date for the todo item
-            item.priority // Priority level of the todo item
+            item.title,
+            item.dueDate,
+            item.priority,
+            item.complete,
+            item.project
           )
       );
+    }
+  }
+
+  loadDummyTodos() {
+    if (this.items == 0) {
+      window.todoList.addItem("Study for exam");
+      window.todoList.updateProject("Study for exam", "Study");
+      window.todoList.addItem("Walk the dog");
+      window.todoList.updateProject("Walk the dog", "Personal");
+      window.todoList.addItem("Clean bedroom");
+      window.todoList.updateProject("Clean bedroom", "Personal");
+      window.todoList.addItem("Learn webpack");
+      window.todoList.updateComplete("Learn webpack");
+      window.todoList.updateProject("Learn webpack", "Study");
+      window.todoList.addItem("Learn react");
+      window.todoList.updateProject("Learn react", "Study");
+      window.todoList.addItem("Finish report", "01/01/2099");
+      window.todoList.updateProject("Finish report", "Work");
+      window.todoList.updateComplete("Finish report");
+      window.todoList.addItem("Client meeting", "07/06/2099");
+      window.todoList.updateProject("Client meeting", "Work");
+
+      return true;
+    } else {
+      return false;
     }
   }
 

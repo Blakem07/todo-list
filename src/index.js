@@ -14,6 +14,8 @@ window.todoList.projectManager.createProject("Study");
 window.todoList.projectManager.createProject("Work");
 
 // Dummy Todos
+window.todoList.loadDummyTodos();
+
 /* 
 window.todoList.addItem("Study for exam");
 window.todoList.updateProject("Study for exam", "Study");
@@ -37,9 +39,10 @@ const ui = new UI(window.todoList);
 // ---------- FIX LIST ----------
 /*
 1. Implement local storagex
-a. fix duplicating dummy projects
-b. add proper comments
-c. Cards loosing their info on refresh
+    a. fix refresh issues:
+        - Date [X]
+        - Project[x]
+        - Checkbox[x]
 
 2. Create a way to delete Projects
 3. Ensure todoCards dont distort when projects are added
