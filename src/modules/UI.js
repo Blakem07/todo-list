@@ -120,7 +120,7 @@ class UI {
         const todoItem = this.todoList.readItem(title);
 
         if (todoItem) {
-          todoItem.complete = target.checked; // Update the complete status based on checkbox
+          this.todoList.updateComplete(title, target.value);
         }
       }
 
@@ -170,6 +170,8 @@ class UI {
             this.toggleButton(target);
             this.updateTextContent(".todo-card-date", "dueDate", todoCard);
             this.togglePopup(dateName, true);
+
+            this.todoList.updateDueDate(title, target.value);
           }
         }
       }
@@ -190,6 +192,8 @@ class UI {
           this.toggleButton(target); // Toggles the dropdown
           this.updateTextContent(".todo-card-project", "project", todoCard);
           this.togglePopup(project, true); // Shows the selected project
+
+          this.todoList.updateProject(title, target.value); // updates TodoItem obj
         }
       }
     });

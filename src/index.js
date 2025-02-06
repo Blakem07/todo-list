@@ -38,12 +38,9 @@ const ui = new UI(window.todoList);
 
 // ---------- FIX LIST ----------
 /*
-1. Implement local storagex
-    a. fix refresh issues:
-        - Date [X]
-        - Project[x]
-        - Checkbox[x]
-
-2. Create a way to delete Projects
-3. Ensure todoCards dont distort when projects are added
+- Todo cards not saving project and date on page refresh
+    projects now appear on refresh [x]
+    dates [x]
+- Create a way to delete Projects
+- Ensure todoCards dont distort when projects are added
 */
