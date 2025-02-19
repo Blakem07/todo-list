@@ -98,11 +98,17 @@ main {
 .nav {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .project-popup {
   height: 80px;
   display: none;
+}
+
+.projects-container,
+.general-todos {
+  width: 100%;
 }
 
 .projects-container {
