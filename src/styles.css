@@ -63,7 +63,7 @@ ul {
 .layout {
   height: 100vh;
   display: grid;
-  grid-template-rows: 1.5fr 8.5fr 1fr;
+  grid-template-rows: 1.5fr 8.5fr 0.5fr;
 }
 
 header {
@@ -71,6 +71,7 @@ header {
   display: flex;
   place-items: center;
   font-family: var(--font-primary);
+  border-bottom: 3px solid black;
   gap: 0px;
 }
 
@@ -152,6 +153,24 @@ content {
 
 footer {
   background-color: var(--secondary-color);
+  display: flex;
+  border-top: 2px solid black;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  gap: 10px;
+}
+
+.github-mark {
+  height: 20px;
+  width: 20px;
+  place-self: center;
+  background: none;
+  border: none;
+  padding: 0;
+  background-image: url(img/github-mark.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* -- COMPONENTS -- */
@@ -164,6 +183,8 @@ button {
   background-color: transparent;
   padding: 10px;
   font-size: var(--font--size--button);
+  border: 2px solid black;
+  margin-top: 1px;
 }
 
 /*Project Cards*/
@@ -173,6 +194,7 @@ button {
   padding: 10px;
   font-size: var(--font--size--button);
   border-radius: 15px;
+  border: 2px solid black;
 }
 
 #add-todo-button {
@@ -181,6 +203,7 @@ button {
   display: flex;
   align-items: center;
   font-size: var(--font--size--button);
+  border: 2px black solid;
 }
 
 .text-form input {
@@ -211,7 +234,8 @@ button {
   grid-template-columns: 1fr 8fr 1fr 1fr 1fr;
   grid-auto-rows: none;
   justify-content: flex-start;
-  border: 1px black solid;
+  border: 2.5px black solid;
+  margin: 1px;
   border-radius: 7px;
 }
 .todo-card-checkbox {
@@ -266,13 +290,20 @@ button {
 
 /* -- STATE STYLES -- */
 
-.nav-button:hover {
+.nav-button:hover,
+.project-card:hover,
+#add-todo-button:hover {
   font-size: calc(var(--font--size--button) + 1px);
   background-color: #e2e8f0;
 }
 
 .form-button:hover {
   filter: brightness(0.8);
+}
+
+.todo-card:hover {
+  font-size: calc(var(--font--size--button) + 1px);
+  background-color: #ebebeb;
 }
 
 .todo-card-input:hover {
