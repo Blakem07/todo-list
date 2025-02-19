@@ -1,6 +1,13 @@
+@font-face {
+  font-family: cute-notes;
+  src: url("font/CuteNotes.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --primary-color: white;
-  --secondary-color: #6c6d6d;
+  --secondary-color: rgb(45, 45, 45);
   --tertiary-color: #b9b9b9;
 
   --font--size--button: 17px;
@@ -9,13 +16,19 @@
 
 /* -- BASE STYLES -- */
 
+html {
+  background-color: var(--secondary-color);
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 100px;
+  margin: 10px;
+  color: var(--primary-color);
 }
 
 h3 {
@@ -38,14 +51,16 @@ header {
   background-color: var(--secondary-color);
   display: flex;
   place-items: center;
-  gap: 20px;
+  font-family: cute-notes;
+  gap: 0px;
 }
 
 .logo-image {
   margin-left: 10px;
-  background-image: url(img/book-open.svg);
+  background-image: url(img/draw.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  filter: brightness(0) invert(1);
   width: 100px;
   height: 100px;
 }
