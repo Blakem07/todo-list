@@ -5,10 +5,28 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: Momentz;
+  src: url("font/Momentz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Banana-Stick;
+  src: url("font/Banana-Stick.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --primary-color: white;
   --secondary-color: rgb(45, 45, 45);
   --tertiary-color: #b9b9b9;
+
+  --font-primary: cute-notes;
+  --font-secondary: Momentz;
+  --font-tertiary: Banana-Stick;
 
   --font--size--button: 17px;
   --font--size--main: 15px;
@@ -21,7 +39,7 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: var(--font-tertiary);
   margin: 0;
 }
 
@@ -32,7 +50,8 @@ h1 {
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 40px;
+  font-family: var(--font-secondary);
 }
 
 ul {
@@ -51,7 +70,7 @@ header {
   background-color: var(--secondary-color);
   display: flex;
   place-items: center;
-  font-family: cute-notes;
+  font-family: var(--font-primary);
   gap: 0px;
 }
 
@@ -130,6 +149,10 @@ footer {
 }
 
 /* -- COMPONENTS -- */
+
+button {
+  font-family: Banana-Stick;
+}
 
 .nav-button {
   background-color: transparent;
