@@ -1,7 +1,32 @@
+@font-face {
+  font-family: cute-notes;
+  src: url("font/CuteNotes.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Momentz;
+  src: url("font/Momentz.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Banana-Stick;
+  src: url("font/Banana-Stick.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --primary-color: white;
-  --secondary-color: #6c6d6d;
+  --secondary-color: rgb(45, 45, 45);
   --tertiary-color: #b9b9b9;
+
+  --font-primary: cute-notes;
+  --font-secondary: Momentz;
+  --font-tertiary: Banana-Stick;
 
   --font--size--button: 17px;
   --font--size--main: 15px;
@@ -9,17 +34,24 @@
 
 /* -- BASE STYLES -- */
 
+html {
+  background-color: var(--secondary-color);
+}
+
 body {
-  font-family: sans-serif;
+  font-family: var(--font-tertiary);
   margin: 0;
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 100px;
+  margin: 10px;
+  color: var(--primary-color);
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 40px;
+  font-family: var(--font-secondary);
 }
 
 ul {
@@ -31,21 +63,24 @@ ul {
 .layout {
   height: 100vh;
   display: grid;
-  grid-template-rows: 1.5fr 8.5fr 1fr;
+  grid-template-rows: 1.5fr 8.5fr 0.5fr;
 }
 
 header {
   background-color: var(--secondary-color);
   display: flex;
   place-items: center;
-  gap: 20px;
+  font-family: var(--font-primary);
+  border-bottom: 3px solid black;
+  gap: 0px;
 }
 
 .logo-image {
   margin-left: 10px;
-  background-image: url(img/book-open.svg);
+  background-image: url(img/draw.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  filter: brightness(0) invert(1);
   width: 100px;
   height: 100px;
 }
@@ -64,11 +99,17 @@ main {
 .nav {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .project-popup {
   height: 80px;
   display: none;
+}
+
+.projects-container,
+.general-todos {
+  width: 100%;
 }
 
 .projects-container {
@@ -112,14 +153,38 @@ content {
 
 footer {
   background-color: var(--secondary-color);
+  display: flex;
+  border-top: 2px solid black;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  gap: 10px;
+}
+
+.github-mark {
+  height: 20px;
+  width: 20px;
+  place-self: center;
+  background: none;
+  border: none;
+  padding: 0;
+  background-image: url(img/github-mark.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* -- COMPONENTS -- */
+
+button {
+  font-family: Banana-Stick;
+}
 
 .nav-button {
   background-color: transparent;
   padding: 10px;
   font-size: var(--font--size--button);
+  border: 2px solid black;
+  margin-top: 1px;
 }
 
 /*Project Cards*/
@@ -129,6 +194,7 @@ footer {
   padding: 10px;
   font-size: var(--font--size--button);
   border-radius: 15px;
+  border: 2px solid black;
 }
 
 #add-todo-button {
@@ -137,6 +203,7 @@ footer {
   display: flex;
   align-items: center;
   font-size: var(--font--size--button);
+  border: 2px black solid;
 }
 
 .text-form input {
@@ -167,7 +234,8 @@ footer {
   grid-template-columns: 1fr 8fr 1fr 1fr 1fr;
   grid-auto-rows: none;
   justify-content: flex-start;
-  border: 1px black solid;
+  border: 2.5px black solid;
+  margin: 1px;
   border-radius: 7px;
 }
 .todo-card-checkbox {
@@ -222,13 +290,20 @@ footer {
 
 /* -- STATE STYLES -- */
 
-.nav-button:hover {
+.nav-button:hover,
+.project-card:hover,
+#add-todo-button:hover {
   font-size: calc(var(--font--size--button) + 1px);
   background-color: #e2e8f0;
 }
 
 .form-button:hover {
   filter: brightness(0.8);
+}
+
+.todo-card:hover {
+  font-size: calc(var(--font--size--button) + 1px);
+  background-color: #ebebeb;
 }
 
 .todo-card-input:hover {
