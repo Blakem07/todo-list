@@ -9,8 +9,8 @@ Created from a webpack template (https://github.com/Blakem07/webpack-template.gi
 ## Key Features
 
 - Multiple Projects: Create and manage multiple projects to organize your todos.
-- Dynamic Todos: Add todos with various properties like due date, priority, and notes.
-- UI Interactions: View, edit, expand, and delete todos. Priorities are color-coded for easy management.
+- Dynamic Todos: Add todos with various properties like due date, projects, and notes.
+- UI Interactions: View, edit, and delete todos.
 - Persistence: Uses localStorage to save and load todos even after the page is refreshed.
 
 ## Technologies Used
