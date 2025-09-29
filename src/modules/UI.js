@@ -1,7 +1,14 @@
+/**
+ * UI class manages the display and interaction with the Todo application interface.
+ * It handles rendering todos, projects, event listeners, and user interactions.
+ */
 class UI {
+  /**
+   * Creates an instance of the UI class.
+   * @param {TodoList} todoList - The TodoList instance to manage todos.
+   */
   constructor(todoList) {
     this.todoList = todoList;
-
     this.allButton = document.querySelector("#all-button");
     this.todayButton = document.querySelector("#today-button");
     this.weekButton = document.querySelector("#week-button");
@@ -20,7 +27,9 @@ class UI {
     this.init();
   }
 
-  // Initializes the page
+  /**
+   * Initializes the UI by setting up event listeners and displaying initial data.
+   */
   init() {
     this.addEventListeners();
     this.addProjectCardEventListeners();
@@ -29,42 +38,38 @@ class UI {
     this.showAllProjects();
   }
 
+  /**
+   * Adds all necessary event listeners for UI interactions.
+   */
   addEventListeners() {
-    // -- ALL BTN --
     this.allButton.addEventListener("click", () => {
       this.clearAllTodos();
       this.showAllTodos();
     });
 
-    // -- TODAY BTN --
     this.todayButton.addEventListener("click", () => {
       this.clearAllTodos();
       this.showTodayTodos();
     });
 
-    // -- WEEK BTN --
     this.weekButton.addEventListener("click", () => {
       this.clearAllTodos();
       this.showWeekTodos();
     });
 
-    // -- CREATE PROJECT BTN --
     this.createProjectButton.addEventListener("click", () => {
       this.toggleButton(this.createProjectButton);
       this.togglePopup(this.projectPopup, true);
     });
 
-    // Opens the add task popup
     this.addTaskBtn.addEventListener("click", () => {
       this.toggleButton(this.addTaskBtn);
       this.togglePopup(this.taskPopup, true);
     });
 
-    // -- TEXT INPUT FORM (PROJECTS/TODOS) --
     this.textForm.forEach((form) => {
       form.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent page refresh
-
+        event.preventDefault();
         const formData = new FormData(form);
         const formValue = formData.get("task") || formData.get("project");
 
@@ -75,12 +80,10 @@ class UI {
           this.populateAllTodoProjectDropdown();
         }
 
-        // Clear the input field
-        form.reset(); // Reset the current form
+        form.reset();
       });
     });
 
-    // -- ALL FORM DELETE BUTTONS --
     this.formDeleteBtns.forEach((button) => {
       button.addEventListener("click", () => {
         const textForm = button.closest(".text-form");
@@ -96,6 +99,9 @@ class UI {
     });
   }
 
+  /**
+   * Adds event listeners to project card elements.
+   */
   addProjectCardEventListeners() {
     this.projectsContainer.addEventListener("click", (event) => {
       const target = event.target;
@@ -107,13 +113,13 @@ class UI {
     });
   }
 
+  /**
+   * Adds event listeners to todo card elements.
+   */
   addTodoCardEventListeners() {
-    // Called on page load by init()
-    // Attach event listener to the parent container (delegation)
     this.cardList.addEventListener("click", (event) => {
       const target = event.target;
 
-      // Handle checkbox click
       if (target.classList.contains("todo-card-checkbox")) {
         const todoCard = target.closest(".todo-card");
         const title = todoCard.querySelector(".todo-card-title").textContent;
@@ -124,7 +130,6 @@ class UI {
         }
       }
 
-      // Handle date name click
       if (target.classList.contains("todo-card-date")) {
         const todoCard = target.closest(".todo-card");
         const dateInput = todoCard.querySelector(".todo-card-date-input");
@@ -132,7 +137,6 @@ class UI {
         this.toggleButton(dateInput, true);
       }
 
-      // Handle project name click
       if (target.classList.contains("todo-card-project")) {
         const todoCard = target.closest(".todo-card");
         const dropdown = todoCard.querySelector(".todo-card-project-select");
@@ -140,7 +144,6 @@ class UI {
         this.toggleButton(dropdown, true);
       }
 
-      // Handle delete button click
       if (target.classList.contains("todo-card-delete-button")) {
         const todoCard = target.closest(".todo-card");
         const parent = todoCard.parentElement;
@@ -162,11 +165,9 @@ class UI {
         if (todoItem) {
           const dateString = target.value;
           const dateObj = new Date(dateString);
-          todoItem.dueDate = dateObj; // Dates stored within todo objects as Date Objects not strings
+          todoItem.dueDate = dateObj;
 
-          // Toggle verification
           if (dateString.length == 10) {
-            // Check for valid date format
             this.toggleButton(target);
             this.updateTextContent(".todo-card-date", "dueDate", todoCard);
             this.togglePopup(dateName, true);
@@ -177,7 +178,6 @@ class UI {
       }
     });
 
-    // Handle project dropdown change event
     this.cardList.addEventListener("change", (event) => {
       const target = event.target;
       if (target.classList.contains("todo-card-project-select")) {
@@ -187,31 +187,34 @@ class UI {
         const project = todoCard.querySelector(".todo-card-project");
 
         if (todoItem && target.value != "") {
-          // Avoid default empty value
           todoItem.project = target.value;
-          this.toggleButton(target); // Toggles the dropdown
+          this.toggleButton(target);
           this.updateTextContent(".todo-card-project", "project", todoCard);
-          this.togglePopup(project, true); // Shows the selected project
+          this.togglePopup(project, true);
 
-          this.todoList.updateProject(title, target.value); // updates TodoItem obj
+          this.todoList.updateProject(title, target.value);
         }
       }
     });
   }
 
-  // -- FORM HANDLING --
-
-  // Function to handle Todo submission
+  /**
+   * Handles todo form submission by adding a new todo item to the list.
+   * @param {string} value - The value of the submitted todo task.
+   */
   handleTodoSubmission(value) {
     this.todoList.addItem(value);
     console.log("Todo added:", value);
     const todoItem = todoList.readItem(value);
-    this.createTodoCard(todoItem); // Adds the newly created to without re-rendering entire array
+    this.createTodoCard(todoItem);
     this.togglePopup(this.taskPopup);
     this.toggleButton(this.addTaskBtn, true);
   }
 
-  // Function to handle Project submission
+  /**
+   * Handles project form submission by adding a new project to the list.
+   * @param {string} value - The value of the submitted project name.
+   */
   handleProjectSubmission(value) {
     this.todoList.projectManager.createProject(value);
     console.log("Project added:", value);
@@ -221,22 +224,29 @@ class UI {
     this.toggleButton(this.createProjectButton, true);
   }
 
-  // -- SHOW/HIDING POPUPS --
-
+  /**
+   * Toggles the visibility of a popup.
+   * @param {HTMLElement} popup - The popup element to toggle.
+   * @param {boolean} show - Whether to show (true) or hide (false) the popup.
+   */
   togglePopup(popup, show) {
-    // Arg: show true or false
     popup.style.display = show ? "block" : "none";
   }
 
+  /**
+   * Toggles the visibility of a button.
+   * @param {HTMLElement} button - The button element to toggle.
+   * @param {boolean} show - Whether to show (true) or hide (false) the button.
+   */
   toggleButton(button, show) {
     button.style.display = show ? "block" : "none";
   }
 
-  // -- CREATING PROJECT CARDS --
-
+  /**
+   * Creates a project card element and appends it to the projects container.
+   * @param {string} project - The project name to display.
+   */
   createProjectCard(project) {
-    // Project being an item from the my projects array
-    // Called by showAllProjects() to display in the left side of the page
     const card = document.createElement("button");
     card.className = "project-card";
     card.textContent = project;
@@ -244,60 +254,46 @@ class UI {
     this.projectsContainer.appendChild(card);
   }
 
-  // -- CREATING TODO CARDS --
-
+  /**
+   * Creates a todo card element and appends it to the todo list.
+   * @param {TodoItem} todoItem - The TodoItem object to display.
+   */
   createTodoCard(todoItem) {
-    // The card
     const card = document.createElement("div");
     card.className = "todo-card";
 
-    // The checkbox
     const checkbox = document.createElement("input");
     checkbox.className = "todo-card-checkbox";
     checkbox.type = "checkbox";
-    checkbox.checked = todoItem.complete; // Checkbox will load checked if true
+    checkbox.checked = todoItem.complete;
 
-    // The title
     const cardTitle = document.createElement("p");
     cardTitle.className = "todo-card-title";
     cardTitle.textContent = todoItem.title;
 
-    // The project name
     const cardProject = document.createElement("p");
     cardProject.className = "todo-card-project todo-card-input";
-    if (todoItem.project != null) {
-      cardProject.textContent = todoItem.project;
-    } else {
-      cardProject.textContent = "Project...";
-    }
+    cardProject.textContent = todoItem.project || "Project...";
 
-    // The projects dropdown
     const projectDropdown = document.createElement("select");
     projectDropdown.className = "todo-card-project-select";
 
-    // The date
     const date = document.createElement("p");
     date.className = "todo-card-date todo-card-input";
-    if (todoItem.dueDate) {
-      date.textContent = this.formatDate(todoItem.dueDate);
-    } else {
-      date.textContent = "Date...";
-    }
+    date.textContent = todoItem.dueDate
+      ? this.formatDate(todoItem.dueDate)
+      : "Date...";
 
-    // The date input
     const dateInput = document.createElement("input");
     dateInput.className = "todo-card-date-input";
     dateInput.type = "date";
     dateInput.value = todoItem.dueDate;
 
-    // Delete card button
     const deleteTodoButton = document.createElement("button");
     deleteTodoButton.className = "todo-card-delete-button todo-card-input";
 
-    //  List element - todoCards are appended to a list
     const listEle = document.createElement("li");
 
-    // Appending
     card.appendChild(checkbox);
     card.appendChild(cardTitle);
     card.appendChild(cardProject);
@@ -308,67 +304,72 @@ class UI {
     listEle.appendChild(card);
     this.cardList.appendChild(listEle);
 
-    // Sets default value after select has been rendered
     this.populateTodoProjectDropdown(card);
     if (todoItem.project) {
       projectDropdown.value = todoItem.project;
     }
   }
 
-  // -- SHOWING/HIDING TODOS --
-
+  /**
+   * Shows all todo items.
+   */
   showAllTodos() {
     this.clearAllTodos();
     let allTodos = this.todoList.readItems();
     allTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
+  /**
+   * Shows todos due today.
+   */
   showTodayTodos() {
     this.clearAllTodos();
     let todayTodos = this.todoList.sortByToday();
     todayTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
-  // -- UPDATING TODO CARD TEXT CONTENT --
-
+  /**
+   * Updates the text content of a specific element within a todo card.
+   * @param {string} elementSelector - The CSS selector for the element to update.
+   * @param {string} property - The property of the todo item to display (e.g., "dueDate").
+   * @param {HTMLElement} todoCard - The todo card element to update.
+   */
   updateTextContent(elementSelector, property, todoCard) {
-    // Arg Example: (".todo-card-date", "dueDate", todoCard)
     const element = todoCard.querySelector(elementSelector);
     const title = todoCard.querySelector(".todo-card-title").textContent;
     const todoItem = this.todoList.readItem(title);
 
-    // Checks if date --> date needs formating before being displayed
     if (property === "dueDate" && todoItem[property]) {
-      // If it's a date, format it before updating
       element.textContent = this.formatDate(todoItem[property]);
     } else {
-      // If it's not a date, update the text content normally
       element.textContent = todoItem[property];
     }
   }
 
-  // -- FORMATTING DATE FOR DISPLAYING --
-
+  /**
+   * Formats a date to a string for display.
+   * @param {Date} date - The date object to format.
+   * @returns {string} The formatted date string.
+   */
   formatDate(date) {
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
     return new Date(date).toLocaleDateString("en-US", options);
   }
 
-  // -- POPULATING TODO DROPDOWN --
-
+  /**
+   * Populates a todo card's project dropdown with available projects.
+   * @param {HTMLElement} todoCard - The todo card element to populate.
+   */
   populateTodoProjectDropdown(todoCard) {
-    // Arg: HTML element card NOT the todoItem object
     const projectDropdown = todoCard.querySelector(".todo-card-project-select");
     const allProjects = this.todoList.projectManager.readProjects();
-    projectDropdown.innerHTML = ""; // Clears existing to prevent duplicates
+    projectDropdown.innerHTML = "";
 
-    // Placeholder dropdown element
     const emptyOption = document.createElement("option");
-    emptyOption.value = ""; // Empty value
+    emptyOption.value = "";
     emptyOption.textContent = "-- Please select a project --";
     projectDropdown.appendChild(emptyOption);
 
-    // Populates dropdown with existing projects
     allProjects.forEach((project) => {
       const newOption = document.createElement("option");
       newOption.textContent = project;
@@ -376,37 +377,51 @@ class UI {
 
       projectDropdown.appendChild(newOption);
     });
-
-    // Selects the default project based on the todoItem.project
-    // projectDropdown.value = todoItem.project;
   }
 
+  /**
+   * Populates all todo cards' project dropdowns with available projects.
+   */
   populateAllTodoProjectDropdown() {
     const todoCards = document.querySelectorAll(".todo-card");
     todoCards.forEach((card) => this.populateTodoProjectDropdown(card));
   }
 
+  /**
+   * Shows todos for the current week.
+   */
   showWeekTodos() {
     let weekTodos = this.todoList.sortByWeek();
     weekTodos.forEach((todoItem) => this.createTodoCard(todoItem));
   }
 
+  /**
+   * Clears all todo cards from the list.
+   */
   clearAllTodos() {
     this.cardList.innerHTML = "";
   }
 
-  // -- SHOWING/HIDING PROJECTS --
-
+  /**
+   * Shows all projects in the UI.
+   */
   showAllProjects() {
     this.clearAllProjects();
     let allProjects = this.todoList.projectManager.readProjects();
     allProjects.forEach((project) => this.createProjectCard(project));
   }
 
+  /**
+   * Clears all project cards from the list.
+   */
   clearAllProjects() {
     this.projectsContainer.innerHTML = "";
   }
 
+  /**
+   * Shows todos for a specific project.
+   * @param {string} projectName - The name of the project.
+   */
   showProjectTodos(projectName) {
     this.clearAllTodos();
     let projectTodos = this.todoList.sortByProject(projectName);
