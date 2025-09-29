@@ -313,6 +313,7 @@ button {
   background-image: url(img/trash.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  background-color: none;
 }
 
 /* -- UTILITIES -- */
@@ -348,6 +349,31 @@ button {
 .todo-card-input:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
+}
+
+.todo-card-checkbox {
+  accent-color: #228b22; /* Forest Green - A deeper green color */
+}
+
+.todo-card-checkbox:checked {
+  background-color: #228b22;
+  border-color: #228b22;
+}
+
+/* Style for delete button */
+.todo-card-delete-button {
+  transition: all 0.3s ease;
+  background-color: transparent;
+
+  color: #333;
+  padding: 8px 12px;
+}
+
+.todo-card-delete-button:hover {
+  background-color: red;
+  color: white;
+  box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.8);
+  border: 1px solid red;
 }
 
 /* -- MEDIA QUERIES -- */
