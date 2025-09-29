@@ -290,24 +290,35 @@ button {
 
 /* -- STATE STYLES -- */
 
+/* General hover styles */
 .nav-button:hover,
 .project-card:hover,
-#add-todo-button:hover {
-  font-size: calc(var(--font--size--button) + 1px);
-  background-color: #e2e8f0;
-}
-
-.form-button:hover {
-  filter: brightness(0.8);
-}
-
+#add-todo-button:hover,
 .todo-card:hover {
   font-size: calc(var(--font--size--button) + 1px);
-  background-color: #ebebeb;
+  background-color: #e2e8f0; /* Light color */
+  transition: background-color 0.3s ease, font-size 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Specific hover style for form button */
+.form-button:hover {
+  filter: brightness(0.8);
+  transition: filter 0.3s ease;
+}
+
+/* Hover effect for todo cards */
+.todo-card:hover {
+  background-color: #ebebeb; /* Subtle hover color for cards */
+  transition: background-color 0.3s ease, font-size 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for todo card inputs */
 .todo-card-input:hover {
   transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 /* -- MEDIA QUERIES -- */
