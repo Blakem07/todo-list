@@ -376,4 +376,39 @@ button {
   border: 1px solid red;
 }
 
+/*Drop down menu styling*/
+
+.todo-card-project-select,
+.todo-card-date-input {
+  appearance: none; /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  font-family: var(--font-secondary);
+
+  background-color: #f0f4f8;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+  cursor: pointer;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px 16px;
+}
+
+.todo-card-project-select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.todo-card-project-select {
+  transition: all 0.2s ease;
+}
+
 /* -- MEDIA QUERIES -- */
