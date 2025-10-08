@@ -2,15 +2,20 @@
   "name": "webpack-template",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000w\u0000e\u0000b\u0000p\u0000a\u0000c\u0000k\u0000-\u0000t\u0000e\u0000m\u0000p\u0000l\u0000a\u0000t\u0000e\u0000\r\u0000 \u0000",
+  "homepage": "https://Blakem07.github.io/todo-list",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.2",
     "style-loader": "^4.0.0",
     "webpack": "^5.95.0",
